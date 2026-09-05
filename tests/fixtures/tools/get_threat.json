@@ -1,0 +1,176 @@
+{
+ "seq": 7,
+ "id": "get_threat",
+ "name": "get_threat",
+ "args": {
+  "identifier": "critical-cleo-harmony-vulnerability-exploited-2532fa3d",
+  "include_iocs": true
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "get_threat",
+   "as_of": "2026-09-04T16:05:39Z",
+   "cost": 2,
+   "budget": {
+    "remaining": 85,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "cluster_id": "12e03fb1-9b00-4d77-83cb-b00b2532fa3d",
+   "short_id": "2532fa3d",
+   "title": "Critical Cleo Harmony Vulnerability Exploited for Privilege Escalation",
+   "date": "2026-09-02",
+   "first_seen": "2026-09-02",
+   "threat_score": 72.9,
+   "urgency": "medium",
+   "article_count": 6,
+   "summary": "A newly discovered authentication bypass vulnerability in Cleo Harmony, tracked as CVE-2026-84115, allows remote attackers to escalate privileges by manipulating JWT refresh tokens. The flaw, found in the '/api/connections' function, enables attackers to bypass access controls through crafted HTTP headers. An exploit…",
+   "keywords": [
+    "fresh",
+    "cleo",
+    "harmony",
+    "vulnerability",
+    "exploit",
+    "published",
+    "organizations"
+   ],
+   "sources": [
+    "Securityweek",
+    "Feeds.Feedburner"
+   ],
+   "timeline": [
+    {
+     "date": "2026-01-23",
+     "event": "CVE-2026-0768 published",
+     "detail": "Vulnerability assigned a CVE identifier and published in the National Vulnerability Database.",
+     "source": "MITRE",
+     "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-0768"
+    },
+    {
+     "date": "2026-08-28",
+     "event": "CVE-2026-82078 published",
+     "detail": "Vulnerability assigned a CVE identifier and published in the National Vulnerability Database.",
+     "source": "MITRE",
+     "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82078"
+    },
+    {
+     "date": "2026-08-28",
+     "event": "CVE-2026-82329 published",
+     "detail": "Vulnerability assigned a CVE identifier and published in the National Vulnerability Database.",
+     "source": "MITRE",
+     "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82329"
+    }
+   ],
+   "timeline_truncated": true,
+   "entities": {
+    "attack_type": [
+     "Data Breach",
+     "Zero-day Exploit"
+    ],
+    "cve": [
+     "CVE-2026-0768",
+     "CVE-2026-81578",
+     "CVE-2026-82078",
+     "CVE-2026-82329",
+     "CVE-2026-83548",
+     "CVE-2026-83549",
+     "CVE-2026-84115"
+    ],
+    "cwe": [
+     "CWE-269 - Improper Privilege Management",
+     "CWE-287 - Improper Authentication",
+     "CWE-862 - Missing Authorization"
+    ],
+    "domain": [
+     "developer.cleo.com",
+     "export.in",
+     "java.io",
+     "openssh.com",
+     "putty.projects.tartarus.org"
+    ],
+    "email": [
+     "aes128-gcm@openssh.com",
+     "aes256-gcm@openssh.com",
+     "hmac-sha2-256-etm@openssh.com",
+     "hmac-sha2-512-etm@openssh.com",
+     "simple@putty.projects.tartarus.org"
+    ],
+    "ipv4": [
+     "3.10.0.10",
+     "3.10.0.2",
+     "3.10.0.3",
+     "3.10.0.4",
+     "3.10.0.5",
+     "3.10.0.6",
+     "3.10.0.7",
+     "3.10.0.8",
+     "3.10.1.0",
+     "3.10.1.5"
+    ],
+    "mitre_attack": [
+     "T1021 - Remote Services",
+     "T1068 - Exploitation for Privilege Escalation"
+    ],
+    "platform": [
+     "Cleo Harmony",
+     "JFrog Artifactory",
+     "PaperCut",
+     "SonicWall Sma1000",
+     "Windows"
+    ],
+    "company": [
+     "Langflow"
+    ],
+    "ransomware_group": [
+     "Cl0p"
+    ]
+   },
+   "articles": [
+    {
+     "date": "2026-09-02",
+     "source": "Feeds.Feedburner",
+     "title": "Exploit Published for Fresh Cleo Harmony Vulnerability",
+     "url": "https://www.securityweek.com/exploit-published-for-fresh-cleo-harmony-vulnerability/"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "Securityweek",
+     "title": "Exploit Published for Fresh Cleo Harmony Vulnerability",
+     "url": "https://www.securityweek.com/exploit-published-for-fresh-cleo-harmony-vulnerability/amp/"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "Cybersecuritynews",
+     "title": "Cleo Harmony Flaw Lets Remote Attackers Escalate Privileges via JWT Refresh Token",
+     "url": "https://cybersecuritynews.com/cleo-harmony-vulnerability/"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "support.cleo.com",
+     "title": "30258468834583 Cleo Harmony 5 8 1 Release Notes",
+     "url": "https://support.cleo.com/hc/en-us/articles/30258468834583-Cleo-Harmony-5-8-1-Release-Notes"
+    },
+    {
+     "date": "2026-09-03",
+     "source": "Thecyberexpress",
+     "title": "CVE-2026-84115 in Cleo Harmony: JWT Refresh Token Handler Flaw Exposes Remote Attack Risk",
+     "url": "https://thecyberexpress.com/cve-2026-84115-cleo-harmony-jwt-refresh-token/"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "nvd.nist.gov",
+     "title": "CVE-2026-84115",
+     "url": "https://nvd.nist.gov/vuln/detail/cve-2026-84115"
+    }
+   ],
+   "url": "https://threatcluster.io/cluster/critical-cleo-harmony-vulnerability-exploited-2532fa3d",
+   "tier": "free",
+   "iocs": {
+    "count": 0,
+    "indicators": []
+   }
+  }
+ }
+}

@@ -1,0 +1,206 @@
+{
+ "recorded_at": "2026-09-04T16:05:32Z",
+ "upstream": "http://127.0.0.1:8765/api/public/v1",
+ "python": {
+  "api_budget_before": {
+   "ok": true,
+   "cost": 0,
+   "chars": 527
+  },
+  "search_threats": {
+   "ok": true,
+   "cost": 3,
+   "chars": 2210
+  },
+  "search_threats_alternatives": {
+   "ok": true,
+   "cost": 2,
+   "chars": 5623
+  },
+  "search_threats_miss": {
+   "ok": true,
+   "cost": 1,
+   "chars": 350
+  },
+  "search_everything": {
+   "ok": true,
+   "cost": 5,
+   "chars": 1252
+  },
+  "newest_threats": {
+   "ok": true,
+   "cost": 1,
+   "chars": 3376
+  },
+  "newest_threats_trending": {
+   "ok": true,
+   "cost": 1,
+   "chars": 3414
+  },
+  "get_threat": {
+   "ok": true,
+   "cost": 2,
+   "chars": 3892
+  },
+  "get_threat_short_id": {
+   "ok": true,
+   "cost": 1,
+   "chars": 3857
+  },
+  "get_threat_404": {
+   "ok": true,
+   "error": "ThreatCluster API 404 not_found: nothing matches /threats/does-not-exist-00000000",
+   "cost": 0
+  },
+  "leak_site_victims": {
+   "ok": true,
+   "cost": 2,
+   "chars": 3131
+  },
+  "leak_site_victims_sector": {
+   "ok": true,
+   "cost": 2,
+   "chars": 2745
+  },
+  "leak_site_victims_victim": {
+   "ok": true,
+   "cost": 2,
+   "chars": 2759
+  },
+  "lookup_entity": {
+   "ok": true,
+   "cost": 2,
+   "chars": 3126
+  },
+  "lookup_entity_typed": {
+   "ok": true,
+   "cost": 2,
+   "chars": 3002
+  },
+  "lookup_entity_miss": {
+   "ok": true,
+   "cost": 1,
+   "chars": 257
+  },
+  "exploited_vulnerabilities": {
+   "ok": true,
+   "cost": 1,
+   "chars": 2193
+  },
+  "get_vulnerability": {
+   "ok": true,
+   "cost": 1,
+   "chars": 1235
+  },
+  "get_vulnerability_404": {
+   "ok": true,
+   "error": "ThreatCluster API 404 not_found: nothing matches /vulnerabilities/CVE-1999-99999",
+   "cost": 0
+  },
+  "trending_entities": {
+   "ok": true,
+   "cost": 1,
+   "chars": 6248
+  },
+  "trending_entities_typed": {
+   "ok": true,
+   "cost": 1,
+   "chars": 984
+  },
+  "api_budget_after": {
+   "ok": true,
+   "cost": 0,
+   "chars": 610
+  }
+ },
+ "node": {
+  "api_budget_before": {
+   "ok": true,
+   "chars": 527
+  },
+  "search_threats": {
+   "ok": true,
+   "chars": 2210
+  },
+  "search_threats_alternatives": {
+   "ok": true,
+   "chars": 5621
+  },
+  "search_threats_miss": {
+   "ok": true,
+   "chars": 350
+  },
+  "search_everything": {
+   "ok": true,
+   "chars": 1252
+  },
+  "newest_threats": {
+   "ok": true,
+   "chars": 3374
+  },
+  "newest_threats_trending": {
+   "ok": true,
+   "chars": 3414
+  },
+  "get_threat": {
+   "ok": true,
+   "chars": 3892
+  },
+  "get_threat_short_id": {
+   "ok": true,
+   "chars": 3857
+  },
+  "get_threat_404": {
+   "ok": true,
+   "chars": 81
+  },
+  "leak_site_victims": {
+   "ok": true,
+   "chars": 3131
+  },
+  "leak_site_victims_sector": {
+   "ok": true,
+   "chars": 2745
+  },
+  "leak_site_victims_victim": {
+   "ok": true,
+   "chars": 2759
+  },
+  "lookup_entity": {
+   "ok": true,
+   "chars": 3126
+  },
+  "lookup_entity_typed": {
+   "ok": true,
+   "chars": 3002
+  },
+  "lookup_entity_miss": {
+   "ok": true,
+   "chars": 257
+  },
+  "exploited_vulnerabilities": {
+   "ok": true,
+   "chars": 2191
+  },
+  "get_vulnerability": {
+   "ok": true,
+   "chars": 1235
+  },
+  "get_vulnerability_404": {
+   "ok": true,
+   "chars": 80
+  },
+  "trending_entities": {
+   "ok": true,
+   "chars": 6208
+  },
+  "trending_entities_typed": {
+   "ok": true,
+   "chars": 974
+  },
+  "api_budget_after": {
+   "ok": true,
+   "chars": 610
+  }
+ }
+}

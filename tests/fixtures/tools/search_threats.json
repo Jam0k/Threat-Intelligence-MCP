@@ -1,0 +1,106 @@
+{
+ "seq": 1,
+ "id": "search_threats",
+ "name": "search_threats",
+ "args": {
+  "query": "Cleo Harmony",
+  "days": 7,
+  "limit": 3
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "search_threats",
+   "as_of": "2026-09-04T16:05:34Z",
+   "cost": 3,
+   "budget": {
+    "remaining": 97,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "query": "Cleo Harmony",
+   "alternatives": [],
+   "days": 7,
+   "window_searched": "7d",
+   "widened_beyond_days": false,
+   "matched_stage": "any word",
+   "terms_searched": [
+    "Cleo Harmony",
+    "Cleo",
+    "Harmony"
+   ],
+   "api_calls": 3,
+   "count": 2,
+   "clusters": [
+    {
+     "cluster_id": "12e03fb1-9b00-4d77-83cb-b00b2532fa3d",
+     "short_id": "2532fa3d",
+     "title": "Critical Cleo Harmony Vulnerability Exploited for Privilege Escalation",
+     "date": "2026-09-02",
+     "threat_score": 72.9,
+     "urgency": "medium",
+     "article_count": 6,
+     "summary": "A newly discovered authentication bypass vulnerability in Cleo Harmony, tracked as CVE-2026-84115, allows remote attackers to escalate privileges by manipulating JWT refresh tokens. The flaw, found in the '/api/connections' function, enables attackers to bypass access controls through crafted HTTP headers. An exploit…",
+     "sources": [
+      "Securityweek",
+      "Feeds.Feedburner"
+     ],
+     "entities": {
+      "ransomware_group": [
+       "Cl0p"
+      ],
+      "cve": [
+       "CVE-2026-0768",
+       "CVE-2026-81578",
+       "CVE-2026-82078",
+       "CVE-2026-82329",
+       "CVE-2026-83548",
+       "CVE-2026-83549"
+      ],
+      "platform": [
+       "Cleo Harmony",
+       "JFrog Artifactory",
+       "Langflow",
+       "PaperCut",
+       "SonicWall Sma1000",
+       "Windows"
+      ],
+      "attack_type": [
+       "Data Breach",
+       "Zero-Day Exploit"
+      ],
+      "mitre_attack": [
+       "T1021 - Remote Services",
+       "T1068 - Exploitation For Privilege Escalation"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/critical-cleo-harmony-vulnerability-exploited-2532fa3d"
+    },
+    {
+     "cluster_id": "7f19185a-62f6-4301-9ce8-23497000511a",
+     "short_id": "7000511a",
+     "title": "Korbit Covers Harmony Token Shortfall After Security Incident",
+     "date": "2026-08-29",
+     "threat_score": 36.9,
+     "urgency": "medium",
+     "article_count": 2,
+     "summary": "Korbit, a South Korean cryptocurrency exchange, reported a shortfall of approximately 210,000 ONE tokens following a security incident on the Harmony network. The exchange's holdings of Harmony tokens were about 4.49 million, while customer deposits reached 4.71 million, leading to a discrepancy valued at around…",
+     "sources": [
+      "Cryptonews",
+      "Cryptorank"
+     ],
+     "entities": {
+      "company": [
+       "Korbit"
+      ],
+      "platform": [
+       "Harmony"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/korbit-covers-harmony-token-shortfall-after-security-inciden-7000511a"
+    }
+   ]
+  }
+ }
+}

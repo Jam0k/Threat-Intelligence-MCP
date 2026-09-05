@@ -1,0 +1,20 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "threatcluster-api-key",
+      "description": "ThreatCluster API key (free keys: https://threatcluster.io/api)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "threatcluster": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "threatcluster-mcp"],
+      "env": {
+        "THREATCLUSTER_API_KEY": "${input:threatcluster-api-key}"
+      }
+    }
+  }
+}

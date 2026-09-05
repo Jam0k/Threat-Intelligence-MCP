@@ -1,0 +1,198 @@
+{
+ "seq": 11,
+ "id": "leak_site_victims_sector",
+ "name": "leak_site_victims",
+ "args": {
+  "days": 7,
+  "sector": "Healthcare",
+  "limit": 3
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "leak_site_victims",
+   "as_of": "2026-09-04T16:05:42Z",
+   "cost": 2,
+   "budget": {
+    "remaining": 82,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "days": 7,
+   "filters": {
+    "sector": "Healthcare"
+   },
+   "window_total_listings": 236,
+   "by_group": [
+    {
+     "group": "qilin",
+     "count": 23,
+     "url": "https://threatcluster.io/dark-web/group/qilin"
+    },
+    {
+     "group": "thegentlemen",
+     "count": 22,
+     "url": "https://threatcluster.io/dark-web/group/thegentlemen"
+    },
+    {
+     "group": "zawoo",
+     "count": 19,
+     "url": "https://threatcluster.io/dark-web/group/zawoo"
+    },
+    {
+     "group": "settra",
+     "count": 17,
+     "url": "https://threatcluster.io/dark-web/group/settra"
+    },
+    {
+     "group": "incransom",
+     "count": 15,
+     "url": "https://threatcluster.io/dark-web/group/incransom"
+    },
+    {
+     "group": "krybit",
+     "count": 15,
+     "url": "https://threatcluster.io/dark-web/group/krybit"
+    },
+    {
+     "group": "akira",
+     "count": 11,
+     "url": "https://threatcluster.io/dark-web/group/akira"
+    },
+    {
+     "group": "braincipher",
+     "count": 8,
+     "url": "https://threatcluster.io/dark-web/group/braincipher"
+    },
+    {
+     "group": "direwolf",
+     "count": 8,
+     "url": "https://threatcluster.io/dark-web/group/direwolf"
+    },
+    {
+     "group": "storm",
+     "count": 8,
+     "url": "https://threatcluster.io/dark-web/group/storm"
+    },
+    {
+     "group": "lockbit5",
+     "count": 7,
+     "url": "https://threatcluster.io/dark-web/group/lockbit5"
+    },
+    {
+     "group": "silentransomgroup",
+     "count": 7,
+     "url": "https://threatcluster.io/dark-web/group/silentransomgroup"
+    }
+   ],
+   "by_sector": [
+    {
+     "value": "Manufacturing",
+     "count": 37
+    },
+    {
+     "value": "Professional Services",
+     "count": 30
+    },
+    {
+     "value": "Not Found",
+     "count": 28
+    },
+    {
+     "value": "Technology",
+     "count": 28
+    },
+    {
+     "value": "Other",
+     "count": 23
+    },
+    {
+     "value": "Healthcare",
+     "count": 22
+    },
+    {
+     "value": "Retail & E-Commerce",
+     "count": 15
+    },
+    {
+     "value": "Transportation",
+     "count": 12
+    },
+    {
+     "value": "Financial Services",
+     "count": 11
+    },
+    {
+     "value": "Education",
+     "count": 8
+    }
+   ],
+   "by_country": [
+    {
+     "value": "US",
+     "count": 73
+    },
+    {
+     "value": "DE",
+     "count": 20
+    },
+    {
+     "value": "GB",
+     "count": 10
+    },
+    {
+     "value": "CA",
+     "count": 8
+    },
+    {
+     "value": "IN",
+     "count": 8
+    },
+    {
+     "value": "MX",
+     "count": 7
+    },
+    {
+     "value": "BR",
+     "count": 6
+    },
+    {
+     "value": "NL",
+     "count": 6
+    }
+   ],
+   "listings_count": 3,
+   "listings": [
+    {
+     "date": "2026-09-03",
+     "group": "spacebears",
+     "victim": "Studio Oculistico Ciraci",
+     "sector": "Healthcare",
+     "country": "IT",
+     "website": "www.oculisticaciraci.it",
+     "url": "https://threatcluster.io/dark-web/victim/3efc6d9c185ba671"
+    },
+    {
+     "date": "2026-09-03",
+     "group": "krybit",
+     "victim": "ligacancerguate.org",
+     "sector": "Healthcare",
+     "country": "GT",
+     "website": "ligacancerguate.org",
+     "url": "https://threatcluster.io/dark-web/victim/3a017f91780a1fbc"
+    },
+    {
+     "date": "2026-09-03",
+     "group": "settra",
+     "victim": "int.diasorin.com",
+     "sector": "Healthcare",
+     "country": "IT",
+     "website": "int.diasorin.com",
+     "url": "https://threatcluster.io/dark-web/victim/60e0a7362481f352"
+    }
+   ],
+   "note": "Listings are claims by the groups, not confirmed breaches. The tally covers every listing in the window (all groups, sectors and countries); the listings are the newest that match the filters."
+  }
+ }
+}

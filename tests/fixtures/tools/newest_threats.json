@@ -1,0 +1,173 @@
+{
+ "seq": 5,
+ "id": "newest_threats",
+ "name": "newest_threats",
+ "args": {
+  "time_filter": "24h",
+  "limit": 3,
+  "sort_by": "new"
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "newest_threats",
+   "as_of": "2026-09-04T16:05:37Z",
+   "cost": 1,
+   "budget": {
+    "remaining": 88,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "time_filter": "24h",
+   "sort_by": "new",
+   "count": 3,
+   "clusters": [
+    {
+     "cluster_id": "66ca3a9f-d28a-4ecd-82bd-79c09a2f696e",
+     "short_id": "9a2f696e",
+     "title": "New Ted Backdoor Targets South Korean Media and Automotive Sectors",
+     "date": "2026-09-04",
+     "threat_score": 68.0,
+     "urgency": "medium",
+     "article_count": 2,
+     "summary": "A new Linux toolkit, named the 'ted backdoor', has been discovered targeting South Korean organizations in the media and automotive sectors. This toolkit, attributed to North Korean state actors, integrates into HAProxy load balancers to intercept web traffic and deliver altered content. The toolkit…",
+     "sources": [
+      "www.rapid7.com",
+      "Thehackernews"
+     ],
+     "entities": {
+      "apt_group": [
+       "Apt37",
+       "Kimsuky",
+       "Lazarus"
+      ],
+      "malware": [
+       "CurlBack RAT",
+       "CurlRAT",
+       "Ted",
+       "Ted Backdoor"
+      ],
+      "tool": [
+       "Apache Tomcat",
+       "HAProxy",
+       "Nginx"
+      ],
+      "campaign": [
+       "Operation SyncHole"
+      ],
+      "platform": [
+       "CentOS",
+       "HAProxy",
+       "Linux",
+       "Ubuntu"
+      ],
+      "country": [
+       "North Korea",
+       "South Korea"
+      ],
+      "industry": [
+       "Automotive",
+       "Financial",
+       "Manufacturing",
+       "Media",
+       "Telecommunications"
+      ],
+      "attack_type": [
+       "Malware",
+       "Trojan"
+      ],
+      "mitre_attack": [
+       "T1003 - OS Credential Dumping",
+       "T1036 - Masquerading",
+       "T1041 - Exfiltration Over C2 Channel",
+       "T1053 - Scheduled Task/Job",
+       "T1056.001 - Keylogging",
+       "T1059.004 - Unix Shell"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/new-ted-backdoor-targets-south-korean-media-and-automotive-s-9a2f696e"
+    },
+    {
+     "cluster_id": "301c5e9b-3f9e-4543-b1e7-e16385a7adea",
+     "short_id": "85a7adea",
+     "title": "Phantom Deal Campaign Targets Enterprises with Fake M&A Scams",
+     "date": "2026-09-04",
+     "threat_score": 60.3,
+     "urgency": "medium",
+     "article_count": 2,
+     "summary": "The 'Phantom Deal' campaign is a sophisticated social engineering scheme targeting large enterprises, aiming to trick employees into making significant wire transfers under the pretense of fake merger and acquisition deals. Threat actors meticulously research their targets, identifying key personnel…",
+     "sources": [
+      "Msspalert",
+      "Darkreading"
+     ],
+     "entities": {
+      "campaign": [
+       "Phantom Deal"
+      ],
+      "company": [
+       "Gen"
+      ],
+      "platform": [
+       "WhatsApp"
+      ],
+      "country": [
+       "Philippines"
+      ],
+      "industry": [
+       "Energy",
+       "Financial",
+       "Mining"
+      ],
+      "attack_type": [
+       "Phishing"
+      ],
+      "mitre_attack": [
+       "T1566.002 - Spearphishing Link",
+       "T1566.003 - Spearphishing Via Service",
+       "T1566 - Phishing"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/phantom-deal-campaign-targets-enterprises-with-fake-ma-scams-85a7adea"
+    },
+    {
+     "cluster_id": "39fd445b-6ae2-4473-9529-e469c791ad8c",
+     "short_id": "c791ad8c",
+     "title": "Social Engineering Attacks Target MFA Enrollment and Recovery",
+     "date": "2026-09-04",
+     "threat_score": 64.5,
+     "urgency": "medium",
+     "article_count": 2,
+     "summary": "Over the past year, Okta Threat Intelligence has reported a rise in attacks where users are tricked into approving multi-factor authentication (MFA) enrollments and password resets initiated by attackers. These social engineering tactics have evolved, with attackers impersonating IT support to lure…",
+     "sources": [
+      "www.okta.com",
+      "Infosecurity-Magazine"
+     ],
+     "entities": {
+      "apt_group": [
+       "Storm-2949"
+      ],
+      "campaign": [
+       "O-unc–066",
+       "O-unc-067",
+       "SolarWinds Campaign"
+      ],
+      "platform": [
+       "Microsoft Entra ID"
+      ],
+      "country": [
+       "Japan"
+      ],
+      "attack_type": [
+       "Phishing"
+      ],
+      "mitre_attack": [
+       "T1566 - Phishing"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/social-engineering-attacks-target-mfa-enrollment-and-recover-c791ad8c"
+    }
+   ]
+  }
+ }
+}

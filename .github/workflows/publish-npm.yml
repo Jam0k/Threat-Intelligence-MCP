@@ -1,0 +1,44 @@
+name: Publish threatcluster-mcp to npm
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  publish:
+    name: Build, test, publish with provenance
+    runs-on: ubuntu-latest
+    environment:
+      name: npm
+      url: https://www.npmjs.com/package/threatcluster-mcp
+    permissions:
+      contents: read
+      id-token: write   # OIDC: npm trusted publishing + provenance attestation
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - name: Verify tag matches package versions
+        run: |
+          tag="${GITHUB_REF#refs/tags/v}"
+          js=$(node -p "require('./node/package.json').version")
+          py=$(python3 -c "import tomllib;print(tomllib.load(open('python/pyproject.toml','rb'))['project']['version'])")
+          if [ "$tag" != "$js" ] || [ "$tag" != "$py" ]; then
+            echo "::error ::tag $tag vs package.json $js vs pyproject $py"; exit 1; fi
+      - run: python3 tools/sync_tools.py --check
+      - name: npm >= 11.5 for trusted publishing
+        run: npm install -g npm@latest && npm --version
+      - working-directory: node
+        run: npm ci
+      - working-directory: node
+        run: npm test
+      - name: Publish
+        working-directory: node
+        run: npm publish --access public --provenance
+        # Trusted publishing (npmjs.com -> package -> Settings -> Trusted publishing) needs no token.
+        # Fallback: a granular token stored as the NPM_TOKEN secret:
+        # env:
+        #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "threatcluster": {
+      "command": "npx",
+      "args": ["-y", "threatcluster-mcp"],
+      "env": {
+        "THREATCLUSTER_API_KEY": "tc_live_..."
+      }
+    }
+  }
+}

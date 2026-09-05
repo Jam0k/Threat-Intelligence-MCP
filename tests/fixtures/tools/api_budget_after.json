@@ -1,0 +1,41 @@
+{
+ "seq": 21,
+ "id": "api_budget_after",
+ "name": "api_budget",
+ "args": {},
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "api_budget",
+   "as_of": "2026-09-04T16:05:47Z",
+   "cost": 0,
+   "budget": {
+    "remaining": 72,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "key_configured": true,
+   "key_source": "env",
+   "api_base": "http://127.0.0.1:37723/api/public/v1",
+   "daily_credits": {
+    "limit": 100,
+    "remaining": 72,
+    "resets_at": "2026-09-05T00:00:00Z",
+    "pack_balance": null
+   },
+   "session": {
+    "started_at": "2026-09-04T16:05:32Z",
+    "api_calls": 29,
+    "credits_spent": 31,
+    "requests_last_minute": 29
+   },
+   "last_response": {
+    "at": "2026-09-04T16:05:47Z",
+    "status": 200
+   },
+   "last_error": null,
+   "advice": "Free keys: 100 credits/day, 30 requests/minute. Cheap reads cost 1, search_everything 5."
+  }
+ }
+}

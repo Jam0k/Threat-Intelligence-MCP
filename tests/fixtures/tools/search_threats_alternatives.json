@@ -1,0 +1,289 @@
+{
+ "seq": 2,
+ "id": "search_threats_alternatives",
+ "name": "search_threats",
+ "args": {
+  "query": "ransomware",
+  "alternatives": [
+   "extortion"
+  ],
+  "limit": 4
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "search_threats",
+   "as_of": "2026-09-04T16:05:36Z",
+   "cost": 2,
+   "budget": {
+    "remaining": 95,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "query": "ransomware",
+   "alternatives": [
+    "extortion"
+   ],
+   "days": null,
+   "window_searched": "7d",
+   "widened_beyond_days": false,
+   "matched_stage": "phrase",
+   "terms_searched": [
+    "ransomware",
+    "extortion"
+   ],
+   "api_calls": 2,
+   "count": 4,
+   "clusters": [
+    {
+     "cluster_id": "12e03fb1-9b00-4d77-83cb-b00b2532fa3d",
+     "short_id": "2532fa3d",
+     "title": "Critical Cleo Harmony Vulnerability Exploited for Privilege Escalation",
+     "date": "2026-09-02",
+     "threat_score": 72.9,
+     "urgency": "medium",
+     "article_count": 6,
+     "summary": "A newly discovered authentication bypass vulnerability in Cleo Harmony, tracked as CVE-2026-84115, allows remote attackers to escalate privileges by manipulating JWT refresh tokens. The flaw, found in the '/api/connections' function, enables attackers to bypass access controls through crafted HTTP headers. An exploit…",
+     "sources": [
+      "Securityweek",
+      "Feeds.Feedburner"
+     ],
+     "entities": {
+      "ransomware_group": [
+       "Cl0p"
+      ],
+      "cve": [
+       "CVE-2026-0768",
+       "CVE-2026-81578",
+       "CVE-2026-82078",
+       "CVE-2026-82329",
+       "CVE-2026-83548",
+       "CVE-2026-83549"
+      ],
+      "platform": [
+       "Cleo Harmony",
+       "JFrog Artifactory",
+       "Langflow",
+       "PaperCut",
+       "SonicWall Sma1000",
+       "Windows"
+      ],
+      "attack_type": [
+       "Data Breach",
+       "Zero-Day Exploit"
+      ],
+      "mitre_attack": [
+       "T1021 - Remote Services",
+       "T1068 - Exploitation For Privilege Escalation"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/critical-cleo-harmony-vulnerability-exploited-2532fa3d"
+    },
+    {
+     "cluster_id": "3c37d8bc-d676-48ec-aabd-a7fe732cdfd2",
+     "short_id": "732cdfd2",
+     "title": "Healthcare Cyberattacks Disrupt Patient Care and Expose Sensitive Data",
+     "date": "2026-08-31",
+     "threat_score": 71.0,
+     "urgency": "medium",
+     "article_count": 4,
+     "summary": "Two major healthcare companies, Boston Scientific and Nutex Health, reported cyberattacks that compromised patient data and disrupted operations. Boston Scientific's systems were breached on August 25, affecting the functionality of pacemakers and other heart devices, preventing remote monitoring. The company is…",
+     "sources": [
+      "Theregister"
+     ],
+     "entities": {
+      "ransomware_group": [
+       "ShinyHunters",
+       "The Gentlemen"
+      ],
+      "malware": [
+       "Acreed",
+       "Atomic Stealer",
+       "LummaC2",
+       "RedLine",
+       "StealC",
+       "Vidar"
+      ],
+      "tool": [
+       "PowerShell"
+      ],
+      "campaign": [
+       "ClickFix",
+       "TerminalFix"
+      ],
+      "company": [
+       "Anthropic",
+       "Boston Scientific",
+       "Carhartt",
+       "Exact Sciences",
+       "McKesson",
+       "Medtronic"
+      ],
+      "platform": [
+       "Salesforce",
+       "Snowflake",
+       "Windows"
+      ],
+      "country": [
+       "Australia"
+      ],
+      "industry": [
+       "Healthcare"
+      ],
+      "attack_type": [
+       "Data Breach",
+       "Malware",
+       "Phishing",
+       "Ransomware",
+       "Zero-Day Exploit"
+      ],
+      "mitre_attack": [
+       "T1041 - Exfiltration Over C2 Channel",
+       "T1053 - Scheduled Task/Job",
+       "T1059.001 - PowerShell",
+       "T1071 - Application Layer Protocol",
+       "T1486 - Data Encrypted For Impact",
+       "T1539 - Steal Web Session Cookie"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/new-malware-campaign-exploits-pngs-and-infostealers-for-acco-732cdfd2"
+    },
+    {
+     "cluster_id": "cc392b89-dd8e-4f96-904a-78ffa98fd276",
+     "short_id": "a98fd276",
+     "title": "AI-Driven Ransomware Attack Completes in Under 10 Hours",
+     "date": "2026-09-02",
+     "threat_score": 70.5,
+     "urgency": "medium",
+     "article_count": 11,
+     "summary": "On September 2, 2026, a human attacker utilized frontier AI agents to execute a ransomware attack on an enterprise, completing the breach in less than 10 hours. The attack involved over 50 techniques from the MITRE ATT&CK framework, which would typically require two weeks of manual effort. Initial access was gained…",
+     "sources": [
+      "Zdnet",
+      "Unit42.Paloaltonetworks"
+     ],
+     "entities": {
+      "ransomware_group": [
+       "Encforge",
+       "Jadepuffer"
+      ],
+      "tool": [
+       "Terraform"
+      ],
+      "company": [
+       "Anthropic"
+      ],
+      "platform": [
+       "Langflow",
+       "MySQL",
+       "Nacos"
+      ],
+      "country": [
+       "China",
+       "Philippines"
+      ],
+      "attack_type": [
+       "Ransomware"
+      ],
+      "mitre_attack": [
+       "T1003 - OS Credential Dumping",
+       "T1041 - Exfiltration Over C2 Channel",
+       "T1046 - Network Service Discovery",
+       "T1059 - Command And Scripting Interpreter",
+       "T1071 - Application Layer Protocol",
+       "T1078 - Valid Accounts"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/ai-driven-ransomware-attack-breaches-enterprise-in-10-hours-a98fd276"
+    },
+    {
+     "cluster_id": "0c4abcf0-4bfd-4b76-a9e4-6ab912fc57f7",
+     "short_id": "12fc57f7",
+     "title": "Node.js Exploited in Ransomware Attacks Using EtherHiding Technique",
+     "date": "2026-09-03",
+     "threat_score": 70.25,
+     "urgency": "medium",
+     "article_count": 8,
+     "summary": "Since February 2026, threat actors have been exploiting the trusted Node.js runtime to deploy malicious payloads in targeted attacks against government departments, technology companies, and hotels. The technique leverages node.exe, a legitimate and signed developer tool, allowing attackers to run interpreted scripts…",
+     "sources": [
+      "www.security.com",
+      "Thehackernews"
+     ],
+     "entities": {
+      "apt_group": [
+       "KongTuke",
+       "Unc5142",
+       "Unc5342"
+      ],
+      "ransomware_group": [
+       "8Base",
+       "Akira",
+       "Black Basta",
+       "Embargo",
+       "Interlock",
+       "Qilin"
+      ],
+      "malware": [
+       "AdaptixC2",
+       "AsukaStealer",
+       "Backdoor.Mistic",
+       "C2Looper",
+       "Cobalt Strike",
+       "EtherHiding"
+      ],
+      "tool": [
+       "Cobalt Strike Beacon",
+       "Ethers.js",
+       "NexShield",
+       "NexShield Chrome Extension",
+       "Node.exe",
+       "Node.js"
+      ],
+      "campaign": [
+       "ClearFake",
+       "ClickFix"
+      ],
+      "company": [
+       "Devmine"
+      ],
+      "platform": [
+       "Binance Smart Chain",
+       "Ethereum",
+       "Ethereum Blockchain",
+       "Google Chrome",
+       "Node.js",
+       "Polygon"
+      ],
+      "country": [
+       "China",
+       "North Korea",
+       "Ukraine"
+      ],
+      "industry": [
+       "E-commerce",
+       "Financial",
+       "Government",
+       "Professional Services",
+       "Retail",
+       "Technology"
+      ],
+      "attack_type": [
+       "Malware",
+       "Phishing",
+       "Ransomware"
+      ],
+      "mitre_attack": [
+       "T1059.001 - PowerShell",
+       "T1059.003 - Windows Command Shell",
+       "T1059.007 - JavaScript",
+       "T1059 - Command And Scripting Interpreter",
+       "T1071 - Application Layer Protocol",
+       "T1105 - Ingress Tool Transfer"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/nodejs-exploited-in-ransomware-attacks-targeting-multiple-se-12fc57f7"
+    }
+   ]
+  }
+ }
+}

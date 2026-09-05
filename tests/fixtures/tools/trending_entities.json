@@ -1,0 +1,348 @@
+{
+ "seq": 19,
+ "id": "trending_entities",
+ "name": "trending_entities",
+ "args": {
+  "time_filter": "7d",
+  "limit": 3
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "trending_entities",
+   "as_of": "2026-09-04T16:05:47Z",
+   "cost": 1,
+   "budget": {
+    "remaining": 72,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "time_filter": "7d",
+   "entities": {
+    "apt_group": [
+     {
+      "value": "Apt29",
+      "mentions": 4,
+      "change_pct": 300.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/apt-group/Apt29"
+     },
+     {
+      "value": "ShinyHunters",
+      "mentions": 5,
+      "change_pct": 66.7,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/apt-group/ShinyHunters"
+     },
+     {
+      "value": "Kimsuky",
+      "mentions": 4,
+      "change_pct": 100.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/apt-group/Kimsuky"
+     }
+    ],
+    "attack_type": [
+     {
+      "value": "Malware",
+      "mentions": 283,
+      "change_pct": 99.3,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/attack-type/Malware"
+     },
+     {
+      "value": "Phishing",
+      "mentions": 213,
+      "change_pct": 61.4,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/attack-type/Phishing"
+     },
+     {
+      "value": "Ransomware",
+      "mentions": 116,
+      "change_pct": 90.2,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/attack-type/Ransomware"
+     }
+    ],
+    "campaign": [
+     {
+      "value": "Project Watershed 250",
+      "mentions": 7,
+      "change_pct": null,
+      "is_new": true,
+      "url": "https://threatcluster.io/entities/campaign/Project%20Watershed%20250"
+     },
+     {
+      "value": "TerminalFix",
+      "mentions": 5,
+      "change_pct": null,
+      "is_new": true,
+      "url": "https://threatcluster.io/entities/campaign/TerminalFix"
+     },
+     {
+      "value": "Fire Ant",
+      "mentions": 5,
+      "change_pct": null,
+      "is_new": true,
+      "url": "https://threatcluster.io/entities/campaign/Fire%20Ant"
+     }
+    ],
+    "company": [
+     {
+      "value": "Anthropic",
+      "mentions": 30,
+      "change_pct": 400.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/company/Anthropic"
+     },
+     {
+      "value": "Ubuntu",
+      "mentions": 32,
+      "change_pct": 220.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/company/Ubuntu"
+     },
+     {
+      "value": "Education",
+      "mentions": 27,
+      "change_pct": 285.7,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/company/Education"
+     }
+    ],
+    "country": [
+     {
+      "value": "Hungary",
+      "mentions": 17,
+      "change_pct": 1600.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/country/Hungary"
+     },
+     {
+      "value": "Bulgaria",
+      "mentions": 19,
+      "change_pct": 280.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/country/Bulgaria"
+     },
+     {
+      "value": "United States",
+      "mentions": 74,
+      "change_pct": 19.4,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/country/United%20States"
+     }
+    ],
+    "cve": [
+     {
+      "value": "CVE-2026-82078",
+      "mentions": 4,
+      "change_pct": 300.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/cve/CVE-2026-82078"
+     },
+     {
+      "value": "CVE-2026-19318",
+      "mentions": 4,
+      "change_pct": 300.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/cve/CVE-2026-19318"
+     },
+     {
+      "value": "CVE-2026-46331",
+      "mentions": 3,
+      "change_pct": 200.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/cve/CVE-2026-46331"
+     }
+    ],
+    "cwe": [
+     {
+      "value": "CWE-287 - Improper Authentication",
+      "mentions": 98,
+      "change_pct": 88.5,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/cwe/CWE-287%20-%20Improper%20Authentication"
+     },
+     {
+      "value": "CWE-269 - Improper Privilege Management",
+      "mentions": 52,
+      "change_pct": 246.7,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/cwe/CWE-269%20-%20Improper%20Privilege%20Management"
+     },
+     {
+      "value": "CWE-78 - OS Command Injection",
+      "mentions": 58,
+      "change_pct": 152.2,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/cwe/CWE-78%20-%20OS%20Command%20Injection"
+     }
+    ],
+    "industry": [
+     {
+      "value": "Healthcare",
+      "mentions": 46,
+      "change_pct": 43.8,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/industry/Healthcare"
+     },
+     {
+      "value": "Telecommunications",
+      "mentions": 23,
+      "change_pct": 53.3,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/industry/Telecommunications"
+     },
+     {
+      "value": "Retail",
+      "mentions": 17,
+      "change_pct": 13.3,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/industry/Retail"
+     }
+    ],
+    "malware": [
+     {
+      "value": "LummaC2",
+      "mentions": 19,
+      "change_pct": 850.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/malware/LummaC2"
+     },
+     {
+      "value": "Cobalt Strike",
+      "mentions": 8,
+      "change_pct": 700.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/malware/Cobalt%20Strike"
+     },
+     {
+      "value": "AMOS",
+      "mentions": 8,
+      "change_pct": 166.7,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/malware/AMOS"
+     }
+    ],
+    "mitre_attack": [
+     {
+      "value": "T1041 - Exfiltration Over C2 Channel",
+      "mentions": 75,
+      "change_pct": 127.3,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/mitre-attack/T1041%20-%20Exfiltration%20Over%20C2%20Channel"
+     },
+     {
+      "value": "T1566 - Phishing",
+      "mentions": 132,
+      "change_pct": 45.1,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/mitre-attack/T1566%20-%20Phishing"
+     },
+     {
+      "value": "T1071 - Application Layer Protocol",
+      "mentions": 73,
+      "change_pct": 114.7,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/mitre-attack/T1071%20-%20Application%20Layer%20Protocol"
+     }
+    ],
+    "platform": [
+     {
+      "value": "Linux",
+      "mentions": 195,
+      "change_pct": 95.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/platform/Linux"
+     },
+     {
+      "value": "Windows",
+      "mentions": 148,
+      "change_pct": 164.3,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/platform/Windows"
+     },
+     {
+      "value": "Microsoft Edge",
+      "mentions": 24,
+      "change_pct": 1100.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/platform/Microsoft%20Edge"
+     }
+    ],
+    "ransomware_group": [
+     {
+      "value": "Ryuk",
+      "mentions": 5,
+      "change_pct": 400.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/ransomware-group/Ryuk"
+     },
+     {
+      "value": "WannaCry",
+      "mentions": 3,
+      "change_pct": 200.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/ransomware-group/WannaCry"
+     },
+     {
+      "value": "8Base",
+      "mentions": 2,
+      "change_pct": 100.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/ransomware-group/8Base"
+     }
+    ],
+    "tool": [
+     {
+      "value": "Google Chrome",
+      "mentions": 32,
+      "change_pct": 3100.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/tool/Google%20Chrome"
+     },
+     {
+      "value": "PowerShell",
+      "mentions": 25,
+      "change_pct": 212.5,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/tool/PowerShell"
+     },
+     {
+      "value": "Dropbox",
+      "mentions": 15,
+      "change_pct": 650.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/tool/Dropbox"
+     }
+    ],
+    "vulnerability": [
+     {
+      "value": "OS Command Injection",
+      "mentions": 8,
+      "change_pct": 300.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/vulnerability/OS%20Command%20Injection"
+     },
+     {
+      "value": "EternalBlue",
+      "mentions": 4,
+      "change_pct": 300.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/vulnerability/EternalBlue"
+     },
+     {
+      "value": "KindaRails2Shell",
+      "mentions": 4,
+      "change_pct": null,
+      "is_new": true,
+      "url": "https://threatcluster.io/entities/vulnerability/KindaRails2Shell"
+     }
+    ]
+   }
+  }
+ }
+}

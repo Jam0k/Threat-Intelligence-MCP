@@ -1,0 +1,198 @@
+{
+ "seq": 6,
+ "id": "newest_threats_trending",
+ "name": "newest_threats",
+ "args": {
+  "time_filter": "7d",
+  "limit": 2,
+  "sort_by": "trending"
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "newest_threats",
+   "as_of": "2026-09-04T16:05:38Z",
+   "cost": 1,
+   "budget": {
+    "remaining": 87,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "time_filter": "7d",
+   "sort_by": "trending",
+   "count": 2,
+   "clusters": [
+    {
+     "cluster_id": "a2e5969c-ad0f-4028-bfda-67e7545ca28d",
+     "short_id": "545ca28d",
+     "title": "China-Linked QTFY Group Targets Critical Infrastructure with Advanced Exploits",
+     "date": "2026-09-02",
+     "threat_score": 80.85,
+     "urgency": "medium",
+     "article_count": 7,
+     "summary": "The Joint Cybersecurity Advisory JCSA-20260826-01, released on August 26, 2026, details ongoing activities by the China-linked hacking group QTFY, attributed to Nanjing Xinjiuwei Network Technology Co. Active since 2018, QTFY employs platforms like QScan and QTRouter to exploit vulnerabilities in cr…",
+     "sources": [
+      "F5",
+      "www.safebreach.com"
+     ],
+     "entities": {
+      "apt_group": [
+       "Apt41",
+       "Flax Typhoon",
+       "Mustang Panda",
+       "QTFY",
+       "Volt Typhoon"
+      ],
+      "ransomware_group": [
+       "Bl00dy",
+       "Clop",
+       "LockBit"
+      ],
+      "malware": [
+       "PlugX"
+      ],
+      "tool": [
+       "Ivanti Cloud Services Appliance",
+       "OpenWrt",
+       "QScan",
+       "QTBotnet",
+       "QTRouter",
+       "RabbitMQ"
+      ],
+      "campaign": [
+       "Salt Typhoon"
+      ],
+      "cve": [
+       "CVE-2018-13379",
+       "CVE-2019-10068",
+       "CVE-2019-11510",
+       "CVE-2019-19781",
+       "CVE-2020-5902",
+       "CVE-2021-26855"
+      ],
+      "company": [
+       "Chengdu 404",
+       "Department Of Energy",
+       "Department Of Health And Human Services",
+       "Department Of Justice",
+       "Federal Reserve",
+       "I-Soon"
+      ],
+      "platform": [
+       "Alibaba Cloud",
+       "Apache",
+       "Atlassian Confluence",
+       "BeyondTrust Remote Support",
+       "Check Point Quantum Gateway",
+       "Citrix ADC"
+      ],
+      "country": [
+       "China",
+       "United States"
+      ],
+      "industry": [
+       "Education",
+       "Energy",
+       "Government",
+       "Technology",
+       "Telecommunications"
+      ],
+      "attack_type": [
+       "Botnet",
+       "Data Breach",
+       "DDoS",
+       "Malware",
+       "Zero-Day Exploit"
+      ],
+      "mitre_attack": [
+       "T1068 - Exploitation For Privilege Escalation",
+       "T1190 - Exploit Public-Facing Application",
+       "T1505.003 - Web Shell",
+       "T1595.002 - Vulnerability Scanning"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/china-linked-qtfy-group-targets-critical-infrastructure-with-545ca28d"
+    },
+    {
+     "cluster_id": "05cde1f9-8694-4b27-b4bd-fec272cbcfdd",
+     "short_id": "72cbcfdd",
+     "title": "SonicWall SMA1000 Faces Critical Zero-Day Exploitation",
+     "date": "2026-09-02",
+     "threat_score": 80.75,
+     "urgency": "medium",
+     "article_count": 33,
+     "summary": "SonicWall disclosed two critical vulnerabilities in its SMA1000 series appliances, CVE-2026-83548 and CVE-2026-83549, which are being actively exploited. CVE-2026-83548 is a pre-authentication server-side request forgery (SSRF) vulnerability rated 10.0 on the CVSS scale, allowing unauthenticated att…",
+     "sources": [
+      "Securityaffairs.Co",
+      "Ground.News",
+      "Ncsa.Qa"
+     ],
+     "entities": {
+      "ransomware_group": [
+       "INC",
+       "INC Ransomware"
+      ],
+      "malware": [
+       "Knuckleball",
+       "Orangetail",
+       "Rootrun"
+      ],
+      "tool": [
+       "Agent_wp8.jar",
+       "Agent_wp9.jar",
+       "Knuckleball",
+       "Metasploit",
+       "Orangetail",
+       "Python"
+      ],
+      "cve": [
+       "CVE-2024-1708",
+       "CVE-2024-1709",
+       "CVE-2025-40602",
+       "CVE-2026-15409",
+       "CVE-2026-15410",
+       "CVE-2026-83548"
+      ],
+      "company": [
+       "Sonicwall",
+       "SonicWall"
+      ],
+      "platform": [
+       "CouchDB",
+       "Erlang",
+       "LDAP",
+       "Nginx",
+       "Sma1000",
+       "SMA 1000"
+      ],
+      "country": [
+       "Australia",
+       "Colombia",
+       "Switzerland",
+       "United Arab Emirates",
+       "United States"
+      ],
+      "industry": [
+       "Government"
+      ],
+      "attack_type": [
+       "Malware",
+       "Ransomware",
+       "Zero-Day Exploit"
+      ],
+      "mitre_attack": [
+       "T1003 - OS Credential Dumping",
+       "T1021 - Remote Services",
+       "T1059.006 - Python",
+       "T1059 - Command And Scripting Interpreter",
+       "T1071 - Application Layer Protocol",
+       "T1078 - Valid Accounts"
+      ]
+     },
+     "url": "https://threatcluster.io/cluster/sonicwall-sma1000-zero-day-vulnerabilities-under-active-expl-72cbcfdd"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "seq": 9,
+ "id": "get_threat_404",
+ "name": "get_threat",
+ "args": {
+  "identifier": "does-not-exist-00000000"
+ },
+ "expected": {
+  "is_error": true,
+  "text": "ThreatCluster API 404 not_found: nothing matches /threats/does-not-exist-00000000",
+  "structured": null
+ }
+}

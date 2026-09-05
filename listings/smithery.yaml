@@ -1,0 +1,26 @@
+# Smithery (https://smithery.ai) manifest — stdio server started from the npm package.
+# Submit at https://smithery.ai/new with the GitHub repo; Smithery reads this file from the repo root
+# (copy it there, or point the listing at listings/smithery.yaml).
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: [threatclusterApiKey]
+    properties:
+      threatclusterApiKey:
+        type: string
+        title: ThreatCluster API key
+        description: "tc_live_... or tc_agent_... key. Free keys: https://threatcluster.io/api"
+      apiBase:
+        type: string
+        title: API base
+        default: https://threatcluster.io/api/public/v1
+  commandFunction: |-
+    (config) => ({
+      command: "npx",
+      args: ["-y", "threatcluster-mcp"],
+      env: {
+        THREATCLUSTER_API_KEY: config.threatclusterApiKey,
+        THREATCLUSTER_API_BASE: config.apiBase || "https://threatcluster.io/api/public/v1"
+      }
+    })

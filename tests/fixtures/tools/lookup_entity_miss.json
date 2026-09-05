@@ -1,0 +1,26 @@
+{
+ "seq": 15,
+ "id": "lookup_entity_miss",
+ "name": "lookup_entity",
+ "args": {
+  "name": "NoSuchEntityZZZ"
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "lookup_entity",
+   "as_of": "2026-09-04T16:05:44Z",
+   "cost": 1,
+   "budget": {
+    "remaining": 75,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "found": false,
+   "name": "NoSuchEntityZZZ",
+   "entity_type": null,
+   "message": "no entity in the corpus matches 'NoSuchEntityZZZ'"
+  }
+ }
+}

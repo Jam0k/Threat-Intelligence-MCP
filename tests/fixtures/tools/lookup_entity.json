@@ -1,0 +1,188 @@
+{
+ "seq": 13,
+ "id": "lookup_entity",
+ "name": "lookup_entity",
+ "args": {
+  "name": "lockbit"
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "lookup_entity",
+   "as_of": "2026-09-04T16:05:43Z",
+   "cost": 2,
+   "budget": {
+    "remaining": 78,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "found": true,
+   "entity": {
+    "type": "ransomware_group",
+    "value": "Lockbit",
+    "mentions": 141,
+    "cluster_count": 90,
+    "article_count": 157,
+    "first_seen": "2025-10-23",
+    "last_seen": "2026-09-04",
+    "url": "https://threatcluster.io/entities/ransomware-group/Lockbit"
+   },
+   "aliases": [],
+   "recent_clusters": [
+    {
+     "cluster_id": "a2e5969c-ad0f-4028-bfda-67e7545ca28d",
+     "title": "China-Linked QTFY Group Targets Critical Infrastructure with Advanced Exploits",
+     "date": "2026-09-02",
+     "threat_score": 80.85,
+     "url": "https://threatcluster.io/cluster/china-linked-qtfy-group-targets-critical-infrastructure-with-545ca28d"
+    },
+    {
+     "cluster_id": "86afe500-9bd5-44f7-9566-efbf56a2d3dd",
+     "title": "Toy Ghouls Use HiveMQ and Element for New Windows Backdoors",
+     "date": "2026-09-04",
+     "threat_score": 65.5,
+     "url": "https://threatcluster.io/cluster/toy-ghouls-use-hivemq-and-element-for-new-windows-backdoors-56a2d3dd"
+    },
+    {
+     "cluster_id": "748a6fed-597a-427f-867f-fa24b3cb1c04",
+     "title": "Ransomware Threats Targeting Backup Systems",
+     "date": "2026-09-02",
+     "threat_score": 60.15,
+     "url": "https://threatcluster.io/cluster/ransomware-threats-targeting-backup-systems-b3cb1c04"
+    }
+   ],
+   "recent_articles": [
+    {
+     "date": "2026-09-04",
+     "source": "Securelist",
+     "title": "Angry Birds: Toy Ghouls’ new toys",
+     "url": "https://securelist.com/toy-ghouls-new-hivemq-and-element-backdoors/121270/"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "F5",
+     "title": "Weekly Threat Bulletin – September 2nd, 2026",
+     "url": "https://www.f5.com/labs/articles/weekly-threat-bulletin-september-2nd-2026"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "Mobileappdaily",
+     "title": "Beyond Encryption: Why Ransomware Targets Your Backups First",
+     "url": "https://www.mobileappdaily.com/opinion/ransomware-targets-backups"
+    }
+   ],
+   "related": {
+    "apt_group": [
+     "Yanluowang",
+     "FamousSparrow",
+     "Wizard Spider",
+     "Evil Corp",
+     "Velvet Tempest",
+     "Kimsuky"
+    ],
+    "ransomware_group": [
+     "Qilin",
+     "DragonForce",
+     "Akira",
+     "Conti",
+     "Ransomhub",
+     "Cl0p"
+    ],
+    "malware": [
+     "DoppelPaymer",
+     "Rhadamanthys",
+     "LummaC2",
+     "Grandoreiro",
+     "Danabot",
+     "Trickbot"
+    ],
+    "tool": [
+     "PowerShell",
+     "AnyDesk",
+     "Curl",
+     "Shodan",
+     "PSExec",
+     "TightVNC"
+    ],
+    "campaign": [
+     "Operation Cronos",
+     "Operation Endgame",
+     "Akira Ransom operations",
+     "2015 Ukraine Electric Power Attack"
+    ],
+    "cve": [
+     "CVE-2026-1731",
+     "CVE-2026-20045"
+    ],
+    "company": [
+     "Education",
+     "Foxconn",
+     "Cisco",
+     "Accenture",
+     "Ledger",
+     "Jones Day"
+    ],
+    "platform": [
+     "Windows",
+     "Linux",
+     "ESXi",
+     "VMware ESXi",
+     "Telegram",
+     "Tor"
+    ],
+    "country": [
+     "United States",
+     "Russia",
+     "Germany",
+     "Ukraine",
+     "France",
+     "United Kingdom"
+    ],
+    "industry": [
+     "Healthcare",
+     "Manufacturing",
+     "Government",
+     "Financial",
+     "Retail",
+     "Energy"
+    ],
+    "attack_type": [
+     "Ransomware",
+     "Data Breach",
+     "Phishing",
+     "Malware",
+     "DDoS",
+     "Supply Chain Attack"
+    ],
+    "mitre_attack": [
+     "T1566 - Phishing",
+     "T1486 - Data Encrypted for Impact",
+     "T1041 - Exfiltration Over C2 Channel",
+     "T1021 - Remote Services",
+     "T1567 - Exfiltration Over Web Service",
+     "T1190 - Exploit Public-Facing Application"
+    ]
+   },
+   "totals": {
+    "clusters": 50,
+    "articles": 50
+   },
+   "other_matches": [
+    {
+     "value": "Lockbit 3.0",
+     "type": "ransomware_group"
+    },
+    {
+     "value": "LockBit3.0",
+     "type": "ransomware_group"
+    },
+    {
+     "value": "LockBit5",
+     "type": "ransomware_group"
+    }
+   ],
+   "lookback_days": 7
+  }
+ }
+}

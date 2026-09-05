@@ -1,0 +1,167 @@
+{
+ "seq": 14,
+ "id": "lookup_entity_typed",
+ "name": "lookup_entity",
+ "args": {
+  "name": "apt29",
+  "entity_type": "apt_group"
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "lookup_entity",
+   "as_of": "2026-09-04T16:05:44Z",
+   "cost": 2,
+   "budget": {
+    "remaining": 76,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "found": true,
+   "entity": {
+    "type": "apt_group",
+    "value": "Apt29",
+    "mentions": 40,
+    "cluster_count": 28,
+    "article_count": 41,
+    "first_seen": "2026-02-15",
+    "last_seen": "2026-09-02",
+    "url": "https://threatcluster.io/entities/apt-group/Apt29"
+   },
+   "aliases": [],
+   "recent_clusters": [
+    {
+     "cluster_id": "068a5006-6436-4f8a-8e09-619f18e8ffaa",
+     "title": "Spearphishing Campaigns Exploit Malicious Links for User Execution",
+     "date": "2026-09-02",
+     "threat_score": 69.5,
+     "url": "https://threatcluster.io/cluster/spearphishing-campaigns-exploit-malicious-links-for-user-exe-18e8ffaa"
+    },
+    {
+     "cluster_id": "5865d788-0176-43f3-8906-0326713a0a04",
+     "title": "Knight Office Phishing Kit Targets Microsoft 365 Accounts via Session Hijacking",
+     "date": "2026-09-02",
+     "threat_score": 68.25,
+     "url": "https://threatcluster.io/cluster/knight-office-phishing-kit-targets-microsoft-365-accounts-vi-713a0a04"
+    },
+    {
+     "cluster_id": "4e26846a-cde7-48b3-b4a7-8cb2bffd328e",
+     "title": "Spring Ring: Coordinated Vishing Campaign Exploits Microsoft Teams",
+     "date": "2026-08-31",
+     "threat_score": 67.5,
+     "url": "https://threatcluster.io/cluster/spring-ring-voice-phishing-campaigns-target-microsoft-teams--bffd328e"
+    }
+   ],
+   "recent_articles": [
+    {
+     "date": "2026-09-02",
+     "source": "attack.mitre.org",
+     "title": "005",
+     "url": "https://attack.mitre.org/techniques/T1098/005/"
+    },
+    {
+     "date": "2026-09-02",
+     "source": "attack.mitre.org",
+     "title": "001",
+     "url": "https://attack.mitre.org/techniques/T1204/001/"
+    },
+    {
+     "date": "2026-08-31",
+     "source": "unit42.paloaltonetworks.com",
+     "title": "Communication Channel Identity Risks",
+     "url": "https://unit42.paloaltonetworks.com/communication-channel-identity-risks/"
+    },
+    {
+     "date": "2026-08-31",
+     "source": "Unit42.Paloaltonetworks",
+     "title": "Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams",
+     "url": "https://unit42.paloaltonetworks.com/spring-ring-voice-phishing-campaigns/"
+    }
+   ],
+   "related": {
+    "apt_group": [
+     "Apt28",
+     "APT41",
+     "Cozy Bear",
+     "Kimsuky",
+     "Apt32",
+     "Apt33"
+    ],
+    "ransomware_group": [
+     "Qilin"
+    ],
+    "malware": [
+     "Cobalt Strike",
+     "Emotet",
+     "DarkGate",
+     "Agent Tesla",
+     "AppleJeus",
+     "Darkhotel"
+    ],
+    "tool": [
+     "PowerShell",
+     "Chrome",
+     "WinRar",
+     "Google Drive",
+     "WinRM",
+     "Microsoft Teams"
+    ],
+    "campaign": [
+     "SolarWinds Compromise",
+     "Contagious Interview",
+     "Shadow-earth-066",
+     "Ukraine Electric Power Attack",
+     "Operation Dust Storm",
+     "Earth Dahu"
+    ],
+    "company": [
+     "Democratic National Committee",
+     "Dnipropetrovsk Regional Administrative Court",
+     "Okta"
+    ],
+    "platform": [
+     "Windows",
+     "Opera",
+     "MacOS",
+     "Microsoft Edge",
+     "Firefox",
+     "Internet Explorer"
+    ],
+    "country": [
+     "Ukraine",
+     "Russia",
+     "Poland",
+     "Armenia",
+     "India",
+     "Iran"
+    ],
+    "industry": [
+     "Government",
+     "Manufacturing",
+     "Financial"
+    ],
+    "attack_type": [
+     "Phishing",
+     "Malware",
+     "Data Breach",
+     "Ransomware"
+    ],
+    "mitre_attack": [
+     "T1059.001 - PowerShell",
+     "T1071 - Application Layer Protocol",
+     "T1566.001 - Spearphishing Attachment",
+     "T1566.002 - Spearphishing Link",
+     "T1566 - Phishing",
+     "T1059 - Command and Scripting Interpreter"
+    ]
+   },
+   "totals": {
+    "clusters": 28,
+    "articles": 40
+   },
+   "other_matches": [],
+   "lookback_days": 7
+  }
+ }
+}

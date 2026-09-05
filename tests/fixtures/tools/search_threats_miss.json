@@ -1,0 +1,36 @@
+{
+ "seq": 3,
+ "id": "search_threats_miss",
+ "name": "search_threats",
+ "args": {
+  "query": "zzqx-nonexistent-term",
+  "days": 3,
+  "limit": 2
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "search_threats",
+   "as_of": "2026-09-04T16:05:36Z",
+   "cost": 1,
+   "budget": {
+    "remaining": 94,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "query": "zzqx-nonexistent-term",
+   "alternatives": [],
+   "days": 3,
+   "window_searched": "7d",
+   "widened_beyond_days": false,
+   "matched_stage": null,
+   "terms_searched": [
+    "zzqx-nonexistent-term"
+   ],
+   "api_calls": 1,
+   "count": 0,
+   "clusters": []
+  }
+ }
+}

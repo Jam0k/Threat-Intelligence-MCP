@@ -1,0 +1,37 @@
+{
+ "seq": 0,
+ "id": "api_budget_before",
+ "name": "api_budget",
+ "args": {},
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "api_budget",
+   "as_of": "2026-09-04T16:05:32Z",
+   "cost": 0,
+   "budget": null,
+   "key_configured": true,
+   "key_source": "env",
+   "api_base": "http://127.0.0.1:37723/api/public/v1",
+   "daily_credits": {
+    "limit": null,
+    "remaining": null,
+    "resets_at": null,
+    "pack_balance": null
+   },
+   "session": {
+    "started_at": "2026-09-04T16:05:32Z",
+    "api_calls": 0,
+    "credits_spent": 0,
+    "requests_last_minute": 0
+   },
+   "last_response": {
+    "at": null,
+    "status": null
+   },
+   "last_error": null,
+   "advice": "No API call has been made yet in this session; the first tool call will populate the daily figures."
+  }
+ }
+}

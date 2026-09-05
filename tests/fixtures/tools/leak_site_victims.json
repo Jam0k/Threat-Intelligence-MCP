@@ -1,0 +1,213 @@
+{
+ "seq": 10,
+ "id": "leak_site_victims",
+ "name": "leak_site_victims",
+ "args": {
+  "days": 7,
+  "limit": 5
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "leak_site_victims",
+   "as_of": "2026-09-04T16:05:41Z",
+   "cost": 2,
+   "budget": {
+    "remaining": 82,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "days": 7,
+   "filters": {},
+   "window_total_listings": 236,
+   "by_group": [
+    {
+     "group": "qilin",
+     "count": 23,
+     "url": "https://threatcluster.io/dark-web/group/qilin"
+    },
+    {
+     "group": "thegentlemen",
+     "count": 22,
+     "url": "https://threatcluster.io/dark-web/group/thegentlemen"
+    },
+    {
+     "group": "zawoo",
+     "count": 19,
+     "url": "https://threatcluster.io/dark-web/group/zawoo"
+    },
+    {
+     "group": "settra",
+     "count": 17,
+     "url": "https://threatcluster.io/dark-web/group/settra"
+    },
+    {
+     "group": "incransom",
+     "count": 15,
+     "url": "https://threatcluster.io/dark-web/group/incransom"
+    },
+    {
+     "group": "krybit",
+     "count": 15,
+     "url": "https://threatcluster.io/dark-web/group/krybit"
+    },
+    {
+     "group": "akira",
+     "count": 11,
+     "url": "https://threatcluster.io/dark-web/group/akira"
+    },
+    {
+     "group": "braincipher",
+     "count": 8,
+     "url": "https://threatcluster.io/dark-web/group/braincipher"
+    },
+    {
+     "group": "direwolf",
+     "count": 8,
+     "url": "https://threatcluster.io/dark-web/group/direwolf"
+    },
+    {
+     "group": "storm",
+     "count": 8,
+     "url": "https://threatcluster.io/dark-web/group/storm"
+    },
+    {
+     "group": "lockbit5",
+     "count": 7,
+     "url": "https://threatcluster.io/dark-web/group/lockbit5"
+    },
+    {
+     "group": "silentransomgroup",
+     "count": 7,
+     "url": "https://threatcluster.io/dark-web/group/silentransomgroup"
+    }
+   ],
+   "by_sector": [
+    {
+     "value": "Manufacturing",
+     "count": 37
+    },
+    {
+     "value": "Professional Services",
+     "count": 30
+    },
+    {
+     "value": "Not Found",
+     "count": 28
+    },
+    {
+     "value": "Technology",
+     "count": 28
+    },
+    {
+     "value": "Other",
+     "count": 23
+    },
+    {
+     "value": "Healthcare",
+     "count": 22
+    },
+    {
+     "value": "Retail & E-Commerce",
+     "count": 15
+    },
+    {
+     "value": "Transportation",
+     "count": 12
+    },
+    {
+     "value": "Financial Services",
+     "count": 11
+    },
+    {
+     "value": "Education",
+     "count": 8
+    }
+   ],
+   "by_country": [
+    {
+     "value": "US",
+     "count": 73
+    },
+    {
+     "value": "DE",
+     "count": 20
+    },
+    {
+     "value": "GB",
+     "count": 10
+    },
+    {
+     "value": "CA",
+     "count": 8
+    },
+    {
+     "value": "IN",
+     "count": 8
+    },
+    {
+     "value": "MX",
+     "count": 7
+    },
+    {
+     "value": "BR",
+     "count": 6
+    },
+    {
+     "value": "NL",
+     "count": 6
+    }
+   ],
+   "listings_count": 5,
+   "listings": [
+    {
+     "date": "2026-09-04",
+     "group": "akira",
+     "victim": "Stransky Heiz-Mess-Regeltechnik GmbH",
+     "sector": "Manufacturing",
+     "country": "DE",
+     "website": null,
+     "url": "https://threatcluster.io/dark-web/victim/203a5cbcf5076c58"
+    },
+    {
+     "date": "2026-09-04",
+     "group": "qilin",
+     "victim": "AP CAPITAL PARTNERS LIMITED",
+     "sector": "Financial Services",
+     "country": null,
+     "website": "www.apcapitalpartners.com",
+     "url": "https://threatcluster.io/dark-web/victim/3831ec5e3ed490e2"
+    },
+    {
+     "date": "2026-09-04",
+     "group": "tridentlocker",
+     "victim": "SouthernCarlson",
+     "sector": "Not Found",
+     "country": null,
+     "website": null,
+     "url": "https://threatcluster.io/dark-web/victim/52644b01e1074662"
+    },
+    {
+     "date": "2026-09-04",
+     "group": "akira",
+     "victim": "Worrell",
+     "sector": "Not Found",
+     "country": null,
+     "website": null,
+     "url": "https://threatcluster.io/dark-web/victim/4af2248d4b882e32"
+    },
+    {
+     "date": "2026-09-04",
+     "group": "qilin",
+     "victim": "Commission de la construction du Quebec (CCQ)",
+     "sector": "Government & Defense",
+     "country": "CA",
+     "website": "www.ccq.org",
+     "url": "https://threatcluster.io/dark-web/victim/53267cff7a61e4c1"
+    }
+   ],
+   "note": "Listings are claims by the groups, not confirmed breaches. The tally covers every listing in the window (all groups, sectors and countries); the listings are the newest that match the filters."
+  }
+ }
+}

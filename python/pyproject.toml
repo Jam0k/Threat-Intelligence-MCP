@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.24", "packaging>=24.2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "threatcluster-mcp"
+version = "0.1.0"
+description = "MCP server for the ThreatCluster threat-intelligence API: incident clusters, entity profiles, CVEs and ransomware leak-site victims as tools for Claude, Cursor, VS Code and any MCP client"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+authors = [{ name = "ThreatCluster" }]
+keywords = ["mcp", "model-context-protocol", "threat-intelligence", "cti", "security", "threatcluster", "claude"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Operating System :: OS Independent",
+  "Topic :: Security",
+  "Intended Audience :: Information Technology",
+]
+dependencies = [
+  "mcp>=1.2,<2.0",
+  "httpx>=0.27,<1.0",
+]
+
+[project.urls]
+Homepage = "https://threatcluster.io/integrations/mcp"
+Documentation = "https://threatcluster.io/integrations/mcp"
+Source = "https://github.com/Jam0k/Threat-Intelligence-MCP"
+Changelog = "https://github.com/Jam0k/Threat-Intelligence-MCP/blob/main/CHANGELOG.md"
+
+[project.scripts]
+threatcluster-mcp = "threatcluster_mcp.server:main"
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.0",
+  "pytest-asyncio>=0.23",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/threatcluster_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/threatcluster_mcp", "tests", "README.md", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

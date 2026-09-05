@@ -1,0 +1,76 @@
+{
+ "seq": 20,
+ "id": "trending_entities_typed",
+ "name": "trending_entities",
+ "args": {
+  "time_filter": "7d",
+  "entity_types": [
+   "malware",
+   "ransomware_group"
+  ],
+  "limit": 3
+ },
+ "expected": {
+  "is_error": false,
+  "text": null,
+  "structured": {
+   "tool": "trending_entities",
+   "as_of": "2026-09-04T16:05:47Z",
+   "cost": 1,
+   "budget": {
+    "remaining": 72,
+    "limit": 100,
+    "resets_at": "2026-09-05T00:00:00Z"
+   },
+   "time_filter": "7d",
+   "entities": {
+    "malware": [
+     {
+      "value": "LummaC2",
+      "mentions": 19,
+      "change_pct": 850.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/malware/LummaC2"
+     },
+     {
+      "value": "Cobalt Strike",
+      "mentions": 8,
+      "change_pct": 700.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/malware/Cobalt%20Strike"
+     },
+     {
+      "value": "AMOS",
+      "mentions": 8,
+      "change_pct": 166.7,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/malware/AMOS"
+     }
+    ],
+    "ransomware_group": [
+     {
+      "value": "Ryuk",
+      "mentions": 5,
+      "change_pct": 400.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/ransomware-group/Ryuk"
+     },
+     {
+      "value": "WannaCry",
+      "mentions": 3,
+      "change_pct": 200.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/ransomware-group/WannaCry"
+     },
+     {
+      "value": "8Base",
+      "mentions": 2,
+      "change_pct": 100.0,
+      "is_new": false,
+      "url": "https://threatcluster.io/entities/ransomware-group/8Base"
+     }
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "threatcluster-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for the ThreatCluster threat-intelligence API: incident clusters, entity profiles, CVEs and ransomware leak-site victims as tools for Claude, Cursor, VS Code and any MCP client",
+  "type": "module",
+  "license": "GPL-3.0-or-later",
+  "author": "ThreatCluster",
+  "homepage": "https://threatcluster.io/integrations/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jam0k/Threat-Intelligence-MCP.git",
+    "directory": "node"
+  },
+  "bugs": {
+    "url": "https://github.com/Jam0k/Threat-Intelligence-MCP/issues"
+  },
+  "keywords": ["mcp", "model-context-protocol", "mcp-server", "threat-intelligence", "cti", "security", "threatcluster", "claude", "cursor"],
+  "bin": {
+    "threatcluster-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "tools.json", "README.md", "LICENSE"],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node -e \"require('fs').chmodSync('dist/index.js', 0o755)\"",
+    "prepublishOnly": "npm run build && npm test",
+    "test": "npm run build && node --test \"tests/*.test.mjs\"",
+    "check": "node dist/index.js --check"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.0 || ^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
