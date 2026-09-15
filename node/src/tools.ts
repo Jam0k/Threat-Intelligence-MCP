@@ -172,6 +172,8 @@ const PRIMARY_ENTITY_TYPES = ["apt_group", "ransomware_group", "malware", "tool"
 const INDICATOR_TYPES = new Set(["ipv4", "ipv6", "domain", "url", "email", "md5", "sha1", "sha256", "btc", "eth", "xmr"]);
 const MAX_SEARCH_CALLS = 8;
 const TIME_FILTER_DAYS: Record<string, number> = { "24h": 1, "7d": 7, "14d": 14, "30d": 30, "90d": 90 };
+/** A stage is good enough to stop laddering at this many hits. */
+const ENOUGH_HITS = 3;
 const IOC_KEYS = ["type", "ioc_type", "value", "confidence", "reason", "context", "first_seen", "last_seen", "source", "tags"];
 
 const g = (o: any, k: string): any => (o && typeof o === "object" && o[k] !== undefined ? o[k] : null);
@@ -505,15 +507,19 @@ export class ToolRunner {
     let body: Record<string, unknown> = {};
     let cost = 0;
     let matched_stage: string | null = null;
+    let best = -1;
     for (const [stageName, term] of stages) {
       if (!term || term.length < 2) continue;
       const [b, c] = await this.client.get("/search", { q: term, limit: a.limit, days: a.days ?? null });
       cost += c;
       const bb = isObj(b) ? (b as Record<string, unknown>) : {};
-      if (arr(bb.clusters).length || arr(bb.entities).length || arr(bb.darkweb).length) {
-        body = bb; matched_stage = stageName; break;
-      }
-      if (!Object.keys(body).length) body = bb;
+      const hits = arr(bb.clusters).length + arr(bb.entities).length + arr(bb.darkweb).length;
+      // Keep the widest result, not the first non-empty one. Stopping on any
+      // hit at all meant "Qilin ransomware group" settled for the 2 rows its
+      // literal phrase matched while "Qilin" alone returns 14 clusters, 5
+      // entities and 5 leak-site victims. Same threshold as search_threats.
+      if (hits > best) { body = bb; matched_stage = stageName; best = hits; }
+      if (hits >= ENOUGH_HITS) break;
     }
     const entities = arr(body.entities).slice(0, a.limit).filter(isObj).map((e) => ({
       type: g(e, "entity_type"),

@@ -127,6 +127,9 @@ PRIMARY_ENTITY_TYPES = ["apt_group", "ransomware_group", "malware", "tool", "cam
                         "country", "industry", "attack_type", "mitre_attack"]
 INDICATOR_TYPES = {"ipv4", "ipv6", "domain", "url", "email", "md5", "sha1", "sha256", "btc", "eth", "xmr"}
 MAX_SEARCH_CALLS = 8
+# A stage is good enough to stop laddering at this many hits (search_threats
+# uses the same number for its phrase -> all words -> any word walk).
+ENOUGH_HITS = 3
 TIME_FILTER_DAYS = {"24h": 1, "7d": 7, "14d": 14, "30d": 30, "90d": 90}
 
 
@@ -457,18 +460,23 @@ class ToolRunner:
         body: dict = {}
         cost = 0
         matched_stage = None
+        best = -1
         for stage_name, term in stages:
             if not term or len(term) < 2:
                 continue
             b, c = await self.client.get("/search", {"q": term, "limit": limit, "days": days})
             cost += c
             b = b if isinstance(b, dict) else {}
-            if (b.get("clusters") or b.get("entities") or b.get("darkweb")):
-                body, matched_stage = b, stage_name
+            hits = len(b.get("clusters") or []) + len(b.get("entities") or []) + len(b.get("darkweb") or [])
+            # Keep the widest result, not the first non-empty one. Stopping on
+            # any hit at all meant "Qilin ransomware group" settled for the 2
+            # rows its literal phrase matched while "Qilin" alone returns 14
+            # clusters, 5 entities and 5 leak-site victims. Same threshold as
+            # search_threats: a stage has to clear ENOUGH_HITS to be accepted.
+            if hits > best:
+                body, matched_stage, best = b, stage_name, hits
+            if hits >= ENOUGH_HITS:
                 break
-            body = body or b
-        if matched_stage is None:
-            matched_stage = None
         entities = [{
             "type": e.get("entity_type"),
             "value": e.get("entity_value"),
