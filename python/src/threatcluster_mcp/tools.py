@@ -127,7 +127,7 @@ PRIMARY_ENTITY_TYPES = ["apt_group", "ransomware_group", "malware", "tool", "cam
                         "country", "industry", "attack_type", "mitre_attack"]
 INDICATOR_TYPES = {"ipv4", "ipv6", "domain", "url", "email", "md5", "sha1", "sha256", "btc", "eth", "xmr"}
 MAX_SEARCH_CALLS = 8
-TIME_FILTER_DAYS = {"24h": 1, "7d": 7, "30d": 30}
+TIME_FILTER_DAYS = {"24h": 1, "7d": 7, "14d": 14, "30d": 30, "90d": 90}
 
 
 def trunc(s: Any, n: int) -> Optional[str]:
@@ -152,13 +152,24 @@ def words_of(query: str) -> list[str]:
 
 
 def days_to_time_filter(days: Optional[int]) -> str:
+    """Map a day count onto the nearest backend time_filter that is >= it.
+
+    Previously anything over 7 became "30d", so days=90 searched 30 days and
+    reported window_searched="30d" with no indication the request had been
+    narrowed. The backend allowlists 14d/30d/90d and applies its own per-tier
+    clamp, so send the real window and let the server decide.
+    """
     if days is None:
         return "7d"
     if days <= 1:
         return "24h"
     if days <= 7:
         return "7d"
-    return "30d"
+    if days <= 14:
+        return "14d"
+    if days <= 30:
+        return "30d"
+    return "90d"
 
 
 def normalise_entities(ents: Any) -> dict[str, list[str]]:
@@ -371,7 +382,8 @@ class ToolRunner:
             return out
 
         lookback_days: Optional[int] = None
-        windows = [initial_tf] + (["30d"] if initial_tf != "30d" else [])
+        windows = [initial_tf] + [w for w in ("30d", "90d")
+                                   if TIME_FILTER_DAYS.get(w, 0) > TIME_FILTER_DAYS.get(initial_tf, 0)]
         for wi, tf in enumerate(windows):
             found_before = len(found)
             for stage_name, terms, is_words in stages:
@@ -425,7 +437,38 @@ class ToolRunner:
 
     # -- search_everything -------------------------------------------------
     async def tool_search_everything(self, query: str, days: Optional[int] = None, limit: int = 5):
-        body, cost = await self.client.get("/search", {"q": query.strip(), "limit": limit, "days": days})
+        """Unified search with the same fallback ladder as search_threats.
+
+        GET /search is a literal substring match, so a descriptive query
+        ("Qilin ransomware group") matched nothing while its head word
+        ("Qilin") matched 24 hits — and the empty result was indistinguishable
+        from an empty corpus. Retry with progressively looser terms and report
+        which stage matched.
+        """
+        q0 = query.strip()
+        words = words_of(q0)
+        stages: list[tuple[str, str]] = [("phrase", q0)]
+        if len(words) >= 2:
+            # All words, then the single most distinctive word (longest wins:
+            # "Qilin" over "group"). Each stage is one call, so the ceiling is 3.
+            stages.append(("all words", " ".join(words)))
+            stages.append(("any word", max(words, key=len)))
+
+        body: dict = {}
+        cost = 0
+        matched_stage = None
+        for stage_name, term in stages:
+            if not term or len(term) < 2:
+                continue
+            b, c = await self.client.get("/search", {"q": term, "limit": limit, "days": days})
+            cost += c
+            b = b if isinstance(b, dict) else {}
+            if (b.get("clusters") or b.get("entities") or b.get("darkweb")):
+                body, matched_stage = b, stage_name
+                break
+            body = body or b
+        if matched_stage is None:
+            matched_stage = None
         entities = [{
             "type": e.get("entity_type"),
             "value": e.get("entity_value"),
@@ -444,7 +487,8 @@ class ToolRunner:
             darkweb.append({"type": kind, "name": d.get("name"), "date": date_only(d.get("date")), "group": d.get("group"),
                             "country": d.get("country"), "sector": d.get("sector"), "url": url})
         return {
-            "query": query.strip(),
+            "query": q0,
+            "matched_stage": matched_stage,
             "days": body.get("days") or body.get("lookback_days"),
             "total": body.get("total"),
             "clusters": [self.shape.cluster(c) for c in (body.get("clusters") or [])[:limit] if isinstance(c, dict)],

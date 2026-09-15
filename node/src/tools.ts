@@ -171,7 +171,7 @@ const PRIMARY_ENTITY_TYPES = ["apt_group", "ransomware_group", "malware", "tool"
   "country", "industry", "attack_type", "mitre_attack"];
 const INDICATOR_TYPES = new Set(["ipv4", "ipv6", "domain", "url", "email", "md5", "sha1", "sha256", "btc", "eth", "xmr"]);
 const MAX_SEARCH_CALLS = 8;
-const TIME_FILTER_DAYS: Record<string, number> = { "24h": 1, "7d": 7, "30d": 30 };
+const TIME_FILTER_DAYS: Record<string, number> = { "24h": 1, "7d": 7, "14d": 14, "30d": 30, "90d": 90 };
 const IOC_KEYS = ["type", "ioc_type", "value", "confidence", "reason", "context", "first_seen", "last_seen", "source", "tags"];
 
 const g = (o: any, k: string): any => (o && typeof o === "object" && o[k] !== undefined ? o[k] : null);
@@ -196,11 +196,19 @@ export function wordsOf(query: string): string[] {
   return (query.match(WORD_RE) || []).filter((w) => !STOP_WORDS.has(w.toLowerCase()));
 }
 
+/** Map a day count onto the nearest backend time_filter that is >= it.
+ *
+ * Previously anything over 7 became "30d", so days=90 searched 30 days and
+ * reported window_searched="30d" with no indication the request had been
+ * narrowed. The backend allowlists 14d/30d/90d and applies its own per-tier
+ * clamp, so send the real window and let the server decide. */
 export function daysToTimeFilter(days: number | null | undefined): string {
   if (days === null || days === undefined) return "7d";
   if (days <= 1) return "24h";
   if (days <= 7) return "7d";
-  return "30d";
+  if (days <= 14) return "14d";
+  if (days <= 30) return "30d";
+  return "90d";
 }
 
 /** Python's urllib.parse.quote(value, safe='') — encodes !'()* too. */
@@ -432,7 +440,8 @@ export class ToolRunner {
       return out;
     };
 
-    const windows = [initialTf, ...(initialTf !== "30d" ? ["30d"] : [])];
+    const windows = [initialTf, ...["30d", "90d"].filter(
+      (w) => (TIME_FILTER_DAYS[w] ?? 0) > (TIME_FILTER_DAYS[initialTf] ?? 0))];
     for (let wi = 0; wi < windows.length; wi++) {
       const tf = windows[wi];
       const foundBefore = found.length;
@@ -478,8 +487,34 @@ export class ToolRunner {
     }, cost];
   }
 
+  /** Unified search with the same fallback ladder as search_threats.
+   *
+   * GET /search is a literal substring match, so a descriptive query
+   * ("Qilin ransomware group") matched nothing while its head word ("Qilin")
+   * matched 24 hits — and the empty result was indistinguishable from an
+   * empty corpus. Retry with progressively looser terms and report which
+   * stage matched. */
   async tool_search_everything(a: { query: string; days?: number; limit: number }): Promise<ToolResult> {
-    const [body, cost] = await this.client.get("/search", { q: a.query.trim(), limit: a.limit, days: a.days ?? null });
+    const q0 = a.query.trim();
+    const qWords = wordsOf(q0);
+    const stages: Array<[string, string]> = [["phrase", q0]];
+    if (qWords.length >= 2) {
+      stages.push(["all words", qWords.join(" ")]);
+      stages.push(["any word", qWords.reduce((x, y) => (y.length > x.length ? y : x))]);
+    }
+    let body: Record<string, unknown> = {};
+    let cost = 0;
+    let matched_stage: string | null = null;
+    for (const [stageName, term] of stages) {
+      if (!term || term.length < 2) continue;
+      const [b, c] = await this.client.get("/search", { q: term, limit: a.limit, days: a.days ?? null });
+      cost += c;
+      const bb = isObj(b) ? (b as Record<string, unknown>) : {};
+      if (arr(bb.clusters).length || arr(bb.entities).length || arr(bb.darkweb).length) {
+        body = bb; matched_stage = stageName; break;
+      }
+      if (!Object.keys(body).length) body = bb;
+    }
     const entities = arr(body.entities).slice(0, a.limit).filter(isObj).map((e) => ({
       type: g(e, "entity_type"),
       value: g(e, "entity_value"),
@@ -498,7 +533,8 @@ export class ToolRunner {
         country: g(d, "country"), sector: g(d, "sector"), url });
     }
     return [{
-      query: a.query.trim(),
+      query: q0,
+      matched_stage,
       days: g(body, "days") || g(body, "lookback_days"),
       total: g(body, "total"),
       clusters: arr(body.clusters).slice(0, a.limit).filter(isObj).map((c) => this.shape.cluster(c)),

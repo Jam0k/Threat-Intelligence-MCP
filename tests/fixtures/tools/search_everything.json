@@ -1,79 +1,80 @@
 {
- "seq": 4,
- "id": "search_everything",
- "name": "search_everything",
- "args": {
-  "query": "lockbit",
-  "limit": 3
- },
- "expected": {
-  "is_error": false,
-  "text": null,
-  "structured": {
-   "tool": "search_everything",
-   "as_of": "2026-09-04T16:05:37Z",
-   "cost": 5,
-   "budget": {
-    "remaining": 89,
-    "limit": 100,
-    "resets_at": "2026-09-05T00:00:00Z"
-   },
-   "query": "lockbit",
-   "days": 7,
-   "total": 6,
-   "clusters": [],
-   "entities": [
-    {
-     "type": "ransomware_group",
-     "value": "Lockbit",
-     "cluster_count": 90,
-     "article_count": 141,
-     "url": "https://threatcluster.io/entities/ransomware-group/Lockbit"
-    },
-    {
-     "type": "ransomware_group",
-     "value": "Lockbit 3.0",
-     "cluster_count": 7,
-     "article_count": 5,
-     "url": "https://threatcluster.io/entities/ransomware-group/Lockbit%203.0"
-    },
-    {
-     "type": "ransomware_group",
-     "value": "LockBit3.0",
-     "cluster_count": 2,
-     "article_count": 1,
-     "url": "https://threatcluster.io/entities/ransomware-group/LockBit3.0"
+  "seq": 4,
+  "id": "search_everything",
+  "name": "search_everything",
+  "args": {
+    "query": "lockbit",
+    "limit": 3
+  },
+  "expected": {
+    "is_error": false,
+    "text": null,
+    "structured": {
+      "tool": "search_everything",
+      "as_of": "2026-09-04T16:05:37Z",
+      "cost": 5,
+      "budget": {
+        "remaining": 89,
+        "limit": 100,
+        "resets_at": "2026-09-05T00:00:00Z"
+      },
+      "query": "lockbit",
+      "matched_stage": "phrase",
+      "days": 7,
+      "total": 6,
+      "clusters": [],
+      "entities": [
+        {
+          "type": "ransomware_group",
+          "value": "Lockbit",
+          "cluster_count": 90,
+          "article_count": 141,
+          "url": "https://threatcluster.io/entities/ransomware-group/Lockbit"
+        },
+        {
+          "type": "ransomware_group",
+          "value": "Lockbit 3.0",
+          "cluster_count": 7,
+          "article_count": 5,
+          "url": "https://threatcluster.io/entities/ransomware-group/Lockbit%203.0"
+        },
+        {
+          "type": "ransomware_group",
+          "value": "LockBit3.0",
+          "cluster_count": 2,
+          "article_count": 1,
+          "url": "https://threatcluster.io/entities/ransomware-group/LockBit3.0"
+        }
+      ],
+      "darkweb": [
+        {
+          "type": "victim",
+          "name": "svfcu.org",
+          "date": "2026-08-31",
+          "group": "lockbit5",
+          "country": "US",
+          "sector": "Financial Services",
+          "url": "https://threatcluster.io/dark-web/victim/5e9204528e5ca8a6"
+        },
+        {
+          "type": "victim",
+          "name": "hoaattorneys.com",
+          "date": "2026-08-31",
+          "group": "lockbit5",
+          "country": "US",
+          "sector": "Professional Services",
+          "url": "https://threatcluster.io/dark-web/victim/20374774ed86a8db"
+        },
+        {
+          "type": "victim",
+          "name": "bartelsbv.nl",
+          "date": "2026-08-31",
+          "group": "lockbit5",
+          "country": "NL",
+          "sector": "Manufacturing",
+          "url": "https://threatcluster.io/dark-web/victim/7f83322c26e89854"
+        }
+      ]
     }
-   ],
-   "darkweb": [
-    {
-     "type": "victim",
-     "name": "svfcu.org",
-     "date": "2026-08-31",
-     "group": "lockbit5",
-     "country": "US",
-     "sector": "Financial Services",
-     "url": "https://threatcluster.io/dark-web/victim/5e9204528e5ca8a6"
-    },
-    {
-     "type": "victim",
-     "name": "hoaattorneys.com",
-     "date": "2026-08-31",
-     "group": "lockbit5",
-     "country": "US",
-     "sector": "Professional Services",
-     "url": "https://threatcluster.io/dark-web/victim/20374774ed86a8db"
-    },
-    {
-     "type": "victim",
-     "name": "bartelsbv.nl",
-     "date": "2026-08-31",
-     "group": "lockbit5",
-     "country": "NL",
-     "sector": "Manufacturing",
-     "url": "https://threatcluster.io/dark-web/victim/7f83322c26e89854"
-    }
-   ]
   }
- }
 }
