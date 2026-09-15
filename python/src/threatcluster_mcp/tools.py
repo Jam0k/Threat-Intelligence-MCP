@@ -130,6 +130,9 @@ MAX_SEARCH_CALLS = 8
 # A stage is good enough to stop laddering at this many hits (search_threats
 # uses the same number for its phrase -> all words -> any word walk).
 ENOUGH_HITS = 3
+# Words fanned out per search_everything call; caps the credit cost of a
+# long query the way MAX_SEARCH_CALLS caps search_threats.
+MAX_SEARCH_WORDS = 4
 TIME_FILTER_DAYS = {"24h": 1, "7d": 7, "14d": 14, "30d": 30, "90d": 90}
 
 
@@ -449,34 +452,79 @@ class ToolRunner:
         which stage matched.
         """
         q0 = query.strip()
-        words = words_of(q0)
-        stages: list[tuple[str, str]] = [("phrase", q0)]
-        if len(words) >= 2:
-            # All words, then the single most distinctive word (longest wins:
-            # "Qilin" over "group"). Each stage is one call, so the ceiling is 3.
-            stages.append(("all words", " ".join(words)))
-            stages.append(("any word", max(words, key=len)))
+        words = words_of(q0)[:MAX_SEARCH_WORDS]
+
+        def key_of(bucket: str, row: dict) -> str:
+            """Stable identity per bucket, so rows can be intersected/unioned."""
+            if bucket == "clusters":
+                return str(row.get("cluster_id") or row.get("short_id") or id(row))
+            if bucket == "entities":
+                return f"{row.get('entity_type')}\u241f{row.get('entity_value')}"
+            return str(row.get("url") or f"{row.get('type')}\u241f{row.get('name')}")
+
+        def merge(bodies: list[dict], common_only: bool) -> dict:
+            """Union the buckets across per-word results; when common_only, keep
+            just the rows every word returned (the 'all words' reading)."""
+            out: dict = {}
+            for bucket in ("clusters", "entities", "darkweb"):
+                per_word = [{key_of(bucket, r): r for r in (b.get(bucket) or []) if isinstance(r, dict)}
+                            for b in bodies]
+                per_word = [m for m in per_word if m] if common_only else per_word
+                if not per_word:
+                    out[bucket] = []
+                    continue
+                keys = set.intersection(*(set(m) for m in per_word)) if common_only else \
+                       set().union(*(set(m) for m in per_word))
+                seen, rows = set(), []
+                for m in per_word:
+                    for k, r in m.items():
+                        if k in keys and k not in seen:
+                            seen.add(k)
+                            rows.append(r)
+                out[bucket] = rows
+            for meta in ("days", "lookback_days", "total"):
+                for b in bodies:
+                    if b.get(meta) is not None:
+                        out.setdefault(meta, b[meta])
+                        break
+            return out
+
+        def size(b: dict) -> int:
+            return sum(len(b.get(k) or []) for k in ("clusters", "entities", "darkweb"))
 
         body: dict = {}
         cost = 0
         matched_stage = None
         best = -1
-        for stage_name, term in stages:
-            if not term or len(term) < 2:
-                continue
-            b, c = await self.client.get("/search", {"q": term, "limit": limit, "days": days})
-            cost += c
-            b = b if isinstance(b, dict) else {}
-            hits = len(b.get("clusters") or []) + len(b.get("entities") or []) + len(b.get("darkweb") or [])
-            # Keep the widest result, not the first non-empty one. Stopping on
-            # any hit at all meant "Qilin ransomware group" settled for the 2
-            # rows its literal phrase matched while "Qilin" alone returns 14
-            # clusters, 5 entities and 5 leak-site victims. Same threshold as
-            # search_threats: a stage has to clear ENOUGH_HITS to be accepted.
-            if hits > best:
-                body, matched_stage, best = b, stage_name, hits
-            if hits >= ENOUGH_HITS:
-                break
+
+        # Stage 1: the phrase exactly as asked.
+        b, c = await self.client.get("/search", {"q": q0, "limit": limit, "days": days})
+        cost += c
+        b = b if isinstance(b, dict) else {}
+        body, matched_stage, best = b, "phrase", size(b)
+
+        # Stages 2 and 3 fan out ONE CALL PER WORD, the way search_threats does.
+        # Joining the words back into a string only re-ran the phrase (GET
+        # /search is a substring match), and picking the longest word chose
+        # "ransomware" over "Qilin" — 2,250 generic clusters instead of the 135
+        # that matter. Intersecting per-word results keeps "all words" specific;
+        # the union is the last resort.
+        if best < ENOUGH_HITS and len(words) >= 2:
+            per: list[dict] = []
+            for w in words:
+                if len(w) < 2:
+                    continue
+                wb, wc = await self.client.get("/search", {"q": w, "limit": limit, "days": days})
+                cost += wc
+                per.append(wb if isinstance(wb, dict) else {})
+            if per:
+                both = merge(per, common_only=True)
+                if size(both) > best:
+                    body, matched_stage, best = both, "all words", size(both)
+                if best < ENOUGH_HITS:
+                    either = merge(per, common_only=False)
+                    if size(either) > best:
+                        body, matched_stage, best = either, "any word", size(either)
         entities = [{
             "type": e.get("entity_type"),
             "value": e.get("entity_value"),

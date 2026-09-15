@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "threatcluster-mcp"
-version = "0.2.1"
+version = "0.2.2"
 description = "MCP server for the ThreatCluster threat-intelligence API: incident clusters, entity profiles, CVEs and ransomware leak-site victims as tools for Claude, Cursor, VS Code and any MCP client"
 readme = "README.md"
 requires-python = ">=3.10"

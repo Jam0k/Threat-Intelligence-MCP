@@ -174,6 +174,8 @@ const MAX_SEARCH_CALLS = 8;
 const TIME_FILTER_DAYS: Record<string, number> = { "24h": 1, "7d": 7, "14d": 14, "30d": 30, "90d": 90 };
 /** A stage is good enough to stop laddering at this many hits. */
 const ENOUGH_HITS = 3;
+/** Words fanned out per search_everything call; caps the credit cost. */
+const MAX_SEARCH_WORDS = 4;
 const IOC_KEYS = ["type", "ioc_type", "value", "confidence", "reason", "context", "first_seen", "last_seen", "source", "tags"];
 
 const g = (o: any, k: string): any => (o && typeof o === "object" && o[k] !== undefined ? o[k] : null);
@@ -498,28 +500,72 @@ export class ToolRunner {
    * stage matched. */
   async tool_search_everything(a: { query: string; days?: number; limit: number }): Promise<ToolResult> {
     const q0 = a.query.trim();
-    const qWords = wordsOf(q0);
-    const stages: Array<[string, string]> = [["phrase", q0]];
-    if (qWords.length >= 2) {
-      stages.push(["all words", qWords.join(" ")]);
-      stages.push(["any word", qWords.reduce((x, y) => (y.length > x.length ? y : x))]);
-    }
+    const qWords = wordsOf(q0).slice(0, MAX_SEARCH_WORDS);
+    const BUCKETS = ["clusters", "entities", "darkweb"] as const;
+    const keyOf = (bucket: string, r: Record<string, unknown>): string => {
+      if (bucket === "clusters") return String(g(r, "cluster_id") ?? g(r, "short_id") ?? JSON.stringify(r));
+      if (bucket === "entities") return `${g(r, "entity_type")}\u241f${g(r, "entity_value")}`;
+      return String(g(r, "url") ?? `${g(r, "type")}\u241f${g(r, "name")}`);
+    };
+    const merge = (bodies: Record<string, unknown>[], commonOnly: boolean): Record<string, unknown> => {
+      const out: Record<string, unknown> = {};
+      for (const bucket of BUCKETS) {
+        const perWord = bodies.map((b) => {
+          const m = new Map<string, Record<string, unknown>>();
+          for (const r of arr(b[bucket])) if (isObj(r)) m.set(keyOf(bucket, r as Record<string, unknown>), r as Record<string, unknown>);
+          return m;
+        }).filter((m) => (commonOnly ? m.size > 0 : true));
+        if (!perWord.length) { out[bucket] = []; continue; }
+        let keys = new Set(perWord[0]!.keys());
+        for (const m of perWord.slice(1)) {
+          keys = commonOnly
+            ? new Set([...keys].filter((k) => m.has(k)))
+            : new Set([...keys, ...m.keys()]);
+        }
+        const seen = new Set<string>(); const rows: Record<string, unknown>[] = [];
+        for (const m of perWord) for (const [k, r] of m) if (keys.has(k) && !seen.has(k)) { seen.add(k); rows.push(r); }
+        out[bucket] = rows;
+      }
+      for (const meta of ["days", "lookback_days", "total"]) {
+        const hit = bodies.find((b) => b[meta] !== undefined && b[meta] !== null);
+        if (hit) out[meta] = hit[meta];
+      }
+      return out;
+    };
+    const size = (b: Record<string, unknown>) => BUCKETS.reduce((n, k) => n + arr(b[k]).length, 0);
+
     let body: Record<string, unknown> = {};
     let cost = 0;
     let matched_stage: string | null = null;
     let best = -1;
-    for (const [stageName, term] of stages) {
-      if (!term || term.length < 2) continue;
-      const [b, c] = await this.client.get("/search", { q: term, limit: a.limit, days: a.days ?? null });
+
+    // Stage 1: the phrase exactly as asked.
+    {
+      const [b, c] = await this.client.get("/search", { q: q0, limit: a.limit, days: a.days ?? null });
       cost += c;
-      const bb = isObj(b) ? (b as Record<string, unknown>) : {};
-      const hits = arr(bb.clusters).length + arr(bb.entities).length + arr(bb.darkweb).length;
-      // Keep the widest result, not the first non-empty one. Stopping on any
-      // hit at all meant "Qilin ransomware group" settled for the 2 rows its
-      // literal phrase matched while "Qilin" alone returns 14 clusters, 5
-      // entities and 5 leak-site victims. Same threshold as search_threats.
-      if (hits > best) { body = bb; matched_stage = stageName; best = hits; }
-      if (hits >= ENOUGH_HITS) break;
+      body = isObj(b) ? (b as Record<string, unknown>) : {};
+      matched_stage = "phrase"; best = size(body);
+    }
+    // Stages 2 and 3 fan out ONE CALL PER WORD, the way search_threats does.
+    // Joining the words back into a string only re-ran the phrase (GET /search
+    // is a substring match), and picking the longest word chose "ransomware"
+    // over "Qilin" — 2,250 generic clusters instead of the 135 that matter.
+    if (best < ENOUGH_HITS && qWords.length >= 2) {
+      const per: Record<string, unknown>[] = [];
+      for (const w of qWords) {
+        if (w.length < 2) continue;
+        const [wb, wc] = await this.client.get("/search", { q: w, limit: a.limit, days: a.days ?? null });
+        cost += wc;
+        per.push(isObj(wb) ? (wb as Record<string, unknown>) : {});
+      }
+      if (per.length) {
+        const both = merge(per, true);
+        if (size(both) > best) { body = both; matched_stage = "all words"; best = size(both); }
+        if (best < ENOUGH_HITS) {
+          const either = merge(per, false);
+          if (size(either) > best) { body = either; matched_stage = "any word"; best = size(either); }
+        }
+      }
     }
     const entities = arr(body.entities).slice(0, a.limit).filter(isObj).map((e) => ({
       type: g(e, "entity_type"),

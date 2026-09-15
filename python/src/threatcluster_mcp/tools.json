@@ -21,35 +21,83 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "query": {"type": "string", "minLength": 1, "maxLength": 200, "description": "2-4 specific words; not a sentence"},
-          "alternatives": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 100}, "maxItems": 5, "description": "other names for the same thing, OR'd with query"},
-          "days": {"type": "integer", "minimum": 1, "maximum": 90, "description": "only clusters with reporting in the last N days (free keys: up to 7)"},
-          "limit": {"type": "integer", "minimum": 1, "maximum": 10, "default": 8}
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "2-4 specific words; not a sentence"
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "maxItems": 5,
+            "description": "other names for the same thing, OR'd with query"
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 90,
+            "description": "only clusters with reporting in the last N days (free keys: up to 7)"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 8
+          }
         },
-        "required": ["query"],
+        "required": [
+          "query"
+        ],
         "additionalProperties": false
       },
-      "endpoints": ["GET /threats?keyword="],
+      "endpoints": [
+        "GET /threats?keyword="
+      ],
       "credits": "1 per term searched, max 8 calls",
       "credits_max": 8
     },
     {
       "name": "search_everything",
       "title": "Search clusters, entities and the dark web",
-      "description": "One call across the whole corpus: incident clusters, entity profiles (actors, malware, vendors, CVEs) and dark-web ransomware listings that match the query. Costs 5 credits, so prefer search_threats (1 credit per term) when you only need clusters; use this when you do not know whether the name is an actor, a victim or a product, or when you want the dark-web hits too.",
+      "description": "One call across the whole corpus: incident clusters, entity profiles (actors, malware, vendors, CVEs) and dark-web ransomware listings that match the query. Costs 5 credits for the phrase; if that returns little it retries one call per word (up to 4 more, so 25 at worst) and `matched_stage` says which stage the results came from. Prefer search_threats (1 credit per term) when you only need clusters; use this when you do not know whether the name is an actor, a victim or a product, or when you want the dark-web hits too.",
       "inputSchema": {
         "type": "object",
         "properties": {
-          "query": {"type": "string", "minLength": 1, "maxLength": 200, "description": "what to look up, e.g. 'LockBit', 'CVE-2026-83549', 'Ivanti'"},
-          "days": {"type": "integer", "minimum": 1, "maximum": 90, "description": "only results with activity in the last N days (free keys: up to 7)"},
-          "limit": {"type": "integer", "minimum": 1, "maximum": 10, "default": 5, "description": "max clusters (entities and dark-web hits are capped the same way)"}
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "what to look up, e.g. 'LockBit', 'CVE-2026-83549', 'Ivanti'"
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 90,
+            "description": "only results with activity in the last N days (free keys: up to 7)"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5,
+            "description": "max clusters (entities and dark-web hits are capped the same way)"
+          }
         },
-        "required": ["query"],
+        "required": [
+          "query"
+        ],
         "additionalProperties": false
       },
-      "endpoints": ["GET /search"],
-      "credits": "5",
-      "credits_max": 5
+      "endpoints": [
+        "GET /search"
+      ],
+      "credits": "5 for the phrase, +5 per extra word retried (max 25)",
+      "credits_max": 25
     },
     {
       "name": "newest_threats",
@@ -58,14 +106,38 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "time_filter": {"type": "string", "enum": ["1h", "24h", "7d", "30d"], "default": "24h", "description": "window; 30d needs a paid key (free keys are clamped to 7d)"},
-          "limit": {"type": "integer", "minimum": 1, "maximum": 15, "default": 12},
-          "sort_by": {"type": "string", "enum": ["new", "trending"], "default": "new"}
+          "time_filter": {
+            "type": "string",
+            "enum": [
+              "1h",
+              "24h",
+              "7d",
+              "30d"
+            ],
+            "default": "24h",
+            "description": "window; 30d needs a paid key (free keys are clamped to 7d)"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 15,
+            "default": 12
+          },
+          "sort_by": {
+            "type": "string",
+            "enum": [
+              "new",
+              "trending"
+            ],
+            "default": "new"
+          }
         },
         "required": [],
         "additionalProperties": false
       },
-      "endpoints": ["GET /threats"],
+      "endpoints": [
+        "GET /threats"
+      ],
       "credits": "1",
       "credits_max": 1
     },
@@ -76,13 +148,27 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "identifier": {"type": "string", "minLength": 4, "maxLength": 200, "description": "cluster id, 8-char short id, or slug"},
-          "include_iocs": {"type": "boolean", "default": false, "description": "also return validated IOCs (domains, IPs, hashes, URLs) for the cluster"}
+          "identifier": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 200,
+            "description": "cluster id, 8-char short id, or slug"
+          },
+          "include_iocs": {
+            "type": "boolean",
+            "default": false,
+            "description": "also return validated IOCs (domains, IPs, hashes, URLs) for the cluster"
+          }
         },
-        "required": ["identifier"],
+        "required": [
+          "identifier"
+        ],
         "additionalProperties": false
       },
-      "endpoints": ["GET /threats/{identifier}", "GET /threats/{identifier}/iocs"],
+      "endpoints": [
+        "GET /threats/{identifier}",
+        "GET /threats/{identifier}/iocs"
+      ],
       "credits": "1 (+1 with include_iocs)",
       "credits_max": 2
     },
@@ -93,17 +179,47 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "days": {"type": "integer", "minimum": 1, "maximum": 90, "default": 7, "description": "window in days (free keys: up to 7)"},
-          "sector": {"type": "string", "maxLength": 100, "description": "e.g. Healthcare, Education, Financial Services, Manufacturing, Government"},
-          "group": {"type": "string", "maxLength": 100, "description": "ransomware group name, e.g. qilin, akira, lockbit5"},
-          "country": {"type": "string", "pattern": "^[A-Za-z]{2}$", "description": "ISO-2 code, e.g. US, GB"},
-          "victim": {"type": "string", "maxLength": 100, "description": "substring of a victim organisation name or domain (matched client-side over the newest listings)"},
-          "limit": {"type": "integer", "minimum": 1, "maximum": 25, "default": 15}
+          "days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 90,
+            "default": 7,
+            "description": "window in days (free keys: up to 7)"
+          },
+          "sector": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "e.g. Healthcare, Education, Financial Services, Manufacturing, Government"
+          },
+          "group": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "ransomware group name, e.g. qilin, akira, lockbit5"
+          },
+          "country": {
+            "type": "string",
+            "pattern": "^[A-Za-z]{2}$",
+            "description": "ISO-2 code, e.g. US, GB"
+          },
+          "victim": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "substring of a victim organisation name or domain (matched client-side over the newest listings)"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 15
+          }
         },
         "required": [],
         "additionalProperties": false
       },
-      "endpoints": ["GET /darkweb/ransomware/victims", "GET /darkweb/ransomware/victims/facets"],
+      "endpoints": [
+        "GET /darkweb/ransomware/victims",
+        "GET /darkweb/ransomware/victims/facets"
+      ],
       "credits": "2",
       "credits_max": 2
     },
@@ -114,13 +230,26 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "name": {"type": "string", "minLength": 1, "maxLength": 200},
-          "entity_type": {"type": "string", "maxLength": 40, "description": "optional: apt_group, ransomware_group, malware, tool, company, platform, cve, country, industry, campaign, attack_type, mitre_attack, domain, ipv4"}
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "entity_type": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "optional: apt_group, ransomware_group, malware, tool, company, platform, cve, country, industry, campaign, attack_type, mitre_attack, domain, ipv4"
+          }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "additionalProperties": false
       },
-      "endpoints": ["GET /entities/search", "GET /entities/{type}/{value}"],
+      "endpoints": [
+        "GET /entities/search",
+        "GET /entities/{type}/{value}"
+      ],
       "credits": "2",
       "credits_max": 2
     },
@@ -131,12 +260,20 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "cve_id": {"type": "string", "pattern": "^[Cc][Vv][Ee]-[0-9]{4}-[0-9]{4,}$", "description": "e.g. CVE-2026-83549"}
+          "cve_id": {
+            "type": "string",
+            "pattern": "^[Cc][Vv][Ee]-[0-9]{4}-[0-9]{4,}$",
+            "description": "e.g. CVE-2026-83549"
+          }
         },
-        "required": ["cve_id"],
+        "required": [
+          "cve_id"
+        ],
         "additionalProperties": false
       },
-      "endpoints": ["GET /vulnerabilities/{cve_id}"],
+      "endpoints": [
+        "GET /vulnerabilities/{cve_id}"
+      ],
       "credits": "1",
       "credits_max": 1
     },
@@ -147,18 +284,55 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "days": {"type": "integer", "minimum": 1, "maximum": 90, "default": 7, "description": "window in days (free keys: up to 7)"},
-          "kev_only": {"type": "boolean", "default": true, "description": "only CVEs in CISA's Known Exploited Vulnerabilities catalogue"},
-          "has_exploit": {"type": "boolean", "default": false, "description": "only CVEs with a public exploit"},
-          "severity": {"type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"]},
-          "vendor": {"type": "string", "maxLength": 100, "description": "CPE vendor, e.g. microsoft, cisco, fortinet"},
-          "product": {"type": "string", "maxLength": 100, "description": "CPE product, e.g. windows, ios, fortios"},
-          "limit": {"type": "integer", "minimum": 1, "maximum": 25, "default": 15}
+          "days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 90,
+            "default": 7,
+            "description": "window in days (free keys: up to 7)"
+          },
+          "kev_only": {
+            "type": "boolean",
+            "default": true,
+            "description": "only CVEs in CISA's Known Exploited Vulnerabilities catalogue"
+          },
+          "has_exploit": {
+            "type": "boolean",
+            "default": false,
+            "description": "only CVEs with a public exploit"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "CRITICAL",
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          },
+          "vendor": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "CPE vendor, e.g. microsoft, cisco, fortinet"
+          },
+          "product": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "CPE product, e.g. windows, ios, fortios"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25,
+            "default": 15
+          }
         },
         "required": [],
         "additionalProperties": false
       },
-      "endpoints": ["GET /vulnerabilities"],
+      "endpoints": [
+        "GET /vulnerabilities"
+      ],
       "credits": "1",
       "credits_max": 1
     },
@@ -169,14 +343,41 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "time_filter": {"type": "string", "enum": ["1h", "24h", "7d", "30d"], "default": "7d", "description": "window; 30d needs a paid key (free keys are clamped to 7d)"},
-          "entity_types": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 40}, "maxItems": 12, "description": "restrict to these types, e.g. [\"apt_group\", \"ransomware_group\", \"malware\"]"},
-          "limit": {"type": "integer", "minimum": 1, "maximum": 10, "default": 5, "description": "entities per type"}
+          "time_filter": {
+            "type": "string",
+            "enum": [
+              "1h",
+              "24h",
+              "7d",
+              "30d"
+            ],
+            "default": "7d",
+            "description": "window; 30d needs a paid key (free keys are clamped to 7d)"
+          },
+          "entity_types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "maxItems": 12,
+            "description": "restrict to these types, e.g. [\"apt_group\", \"ransomware_group\", \"malware\"]"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5,
+            "description": "entities per type"
+          }
         },
         "required": [],
         "additionalProperties": false
       },
-      "endpoints": ["GET /entities/trending"],
+      "endpoints": [
+        "GET /entities/trending"
+      ],
       "credits": "1",
       "credits_max": 1
     },
@@ -201,7 +402,11 @@
       "title": "ThreatCluster analyst",
       "description": "Answer a threat-intelligence question over ThreatCluster's corpus with the tools, citing every fact with the returned URLs.",
       "arguments": [
-        {"name": "question", "description": "the question to answer; leave empty to just load the analyst rules", "required": false}
+        {
+          "name": "question",
+          "description": "the question to answer; leave empty to just load the analyst rules",
+          "required": false
+        }
       ],
       "template": "You are ThreatCluster's analyst assistant, answering over ThreatCluster's own corpus: incident clusters (deduplicated stories with sources and timelines), entity profiles, CVE records and ransomware leak-site listings, reached through the threatcluster MCP tools.\n\nToday is {today}. Date words mean: \"today\" = last 24h; \"this week\" / \"past week\" = last 7 days; \"this month\" / \"recent\" / \"lately\" = last 30 days (say \"in the last 30 days\" in the answer). Say what period you searched. A free key sees the last 7 days; if a result says `lookback_days: 7`, say so when the question asked for more.\n\nRules:\n1. Always call tools first; never answer from memory. Use search_threats for named things, newest_threats for \"what's new\", leak_site_victims for ransomware victims or a sector/country being hit, lookup_entity for an actor/malware/vendor/CVE profile, get_vulnerability / exploited_vulnerabilities for CVEs, get_threat for depth on the 1-3 clusters that matter.\n2. If a windowed search returns nothing, widen the window once (about 4x) before concluding there is nothing; then say plainly that nothing was found in the asked period and offer the nearest older reporting, dated.\n3. Every fact you state must be followed by a citation: the `url` of the tool result it came from, as a Markdown link on the cluster, entity, victim or CVE it names. A tally (counts by group/sector) is cited with the listing URLs it summarises. Never invent a URL or a fact. Passages of general knowledge must be marked \"(general knowledge)\" and carry no link.\n4. Leak-site listings are claims by the groups, not confirmed breaches; say so once when you use them.\n5. Be concise and specific: dates, names, numbers. Markdown with short bullets, under 250 words unless the user asks for depth. No preamble.\n6. Economy: leak_site_victims alone answers who-hit-whom and most-active questions from its tally; do not search clusters per group afterwards. Prefer one well-chosen call per fact you need; every result reports `cost`, and api_budget (free) tells you what is left. Two rounds of calls is normal, four is the limit.{question_block}"
     }
