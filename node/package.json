@@ -42,7 +42,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && node -e \"require('fs').chmodSync('dist/index.js', 0o755)\"",
     "prepublishOnly": "npm run build && npm test",
-    "test": "npm run build && node --test \"tests/*.test.mjs\"",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "check": "node dist/index.js --check"
   },
   "dependencies": {
