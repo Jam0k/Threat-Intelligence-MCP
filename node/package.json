@@ -1,6 +1,6 @@
 {
   "name": "threatcluster-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for the ThreatCluster threat-intelligence API: incident clusters, entity profiles, CVEs and ransomware leak-site victims as tools for Claude, Cursor, VS Code and any MCP client",
   "type": "module",
   "license": "GPL-3.0-or-later",
@@ -14,13 +14,28 @@
   "bugs": {
     "url": "https://github.com/Jam0k/Threat-Intelligence-MCP/issues"
   },
-  "keywords": ["mcp", "model-context-protocol", "mcp-server", "threat-intelligence", "cti", "security", "threatcluster", "claude", "cursor"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "threat-intelligence",
+    "cti",
+    "security",
+    "threatcluster",
+    "claude",
+    "cursor"
+  ],
   "bin": {
     "threatcluster-mcp": "dist/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "tools.json", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "tools.json",
+    "README.md",
+    "LICENSE"
+  ],
   "engines": {
     "node": ">=18"
   },
