@@ -1,6 +1,6 @@
 {
   "name": "threatcluster-mcp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "MCP server for the ThreatCluster threat-intelligence API: incident clusters, entity profiles, CVEs and ransomware leak-site victims as tools for Claude, Cursor, VS Code and any MCP client",
   "type": "module",
   "license": "GPL-3.0-or-later",
@@ -56,5 +56,6 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
-  }
+  },
+  "mcpName": "io.github.Jam0k/threatcluster"
 }
