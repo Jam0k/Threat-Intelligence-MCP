@@ -1,12 +1,12 @@
 # threatcluster-mcp (npm)
 
-MCP server (stdio) for the [ThreatCluster](https://threatcluster.io) threat-intelligence API: incident clusters, entity profiles, CVE records and ransomware leak-site victims as ten read-only tools for Claude, Cursor, VS Code, Windsurf, Zed and any MCP client.
+MCP server (stdio) for the ThreatCluster [threat-intelligence API](https://threatcluster.io/api): incident clusters, entity profiles, CVE records and ransomware leak-site victims as ten read-only tools for Claude, Cursor, VS Code, Windsurf, Zed and any MCP client.
 
 ```bash
 npx -y threatcluster-mcp
 ```
 
-Configure `THREATCLUSTER_API_KEY` (free keys: <https://threatcluster.io/api>).
+Configure `THREATCLUSTER_API_KEY` (free keys: <https://threatcluster.io/get-started>).
 
 Claude Code:
 

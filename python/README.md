@@ -1,12 +1,12 @@
 # threatcluster-mcp (Python)
 
-MCP server (stdio) for the [ThreatCluster](https://threatcluster.io) threat-intelligence API: incident clusters, entity profiles, CVE records and ransomware leak-site victims as ten read-only tools for Claude, Cursor, VS Code, Windsurf, Zed and any MCP client.
+MCP server (stdio) for the ThreatCluster [threat-intelligence API](https://threatcluster.io/api): incident clusters, entity profiles, CVE records and ransomware leak-site victims as ten read-only tools for Claude, Cursor, VS Code, Windsurf, Zed and any MCP client.
 
 ```bash
 uvx threatcluster-mcp            # or: pipx run threatcluster-mcp
 ```
 
-Configure `THREATCLUSTER_API_KEY` (free keys: <https://threatcluster.io/api>). If the [`tc` CLI](https://threatcluster.io/cli) is installed and you have run `tc auth login`, the credential is picked up from its store (keyring or the 0600 file) with no configuration.
+Configure `THREATCLUSTER_API_KEY` (free keys: <https://threatcluster.io/get-started>). If the [`tc` CLI](https://threatcluster.io/cli) is installed and you have run `tc auth login`, the credential is picked up from its store (keyring or the 0600 file) with no configuration.
 
 Claude Code:
 

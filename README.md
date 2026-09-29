@@ -1,6 +1,6 @@
 # Threat Intelligence MCP Server
 
-An [MCP](https://modelcontextprotocol.io) server that gives Claude, Cursor, VS Code, Windsurf, Zed and any other MCP client live threat intelligence from [ThreatCluster](https://threatcluster.io): incident clusters (one deduplicated story per incident, with a threat score, timeline and extracted entities), entity profiles (actors, malware, tools, vendors, CVEs), CVE records with KEV / EPSS / exploit status, and ransomware leak-site victims.
+An [MCP](https://modelcontextprotocol.io) server that gives Claude, Cursor, VS Code, Windsurf, Zed and any other MCP client live threat intelligence from [ThreatCluster](https://threatcluster.io) ([setup guide](https://threatcluster.io/integrations/mcp)): incident clusters (one deduplicated story per incident, with a threat score, timeline and extracted entities), entity profiles (actors, malware, tools, vendors, CVEs), CVE records with KEV / EPSS / exploit status, and ransomware leak-site victims.
 
 It is a thin, auditable wrapper over the public REST API. Every tool call is one or two `GET`s to `https://threatcluster.io/api/public/v1` with **your** API key; nothing else leaves your machine, and there is no telemetry.
 
