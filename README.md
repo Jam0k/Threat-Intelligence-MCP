@@ -1,8 +1,14 @@
-# Threat Intelligence MCP Server
+# ThreatCluster: free CTI API and MCP server
+
+A free threat intelligence API (100 credits a day, no card) and an MCP server over it. Ask Claude, Cursor or any MCP client what is new, who was hit, whether a CVE is exploited, and get answers from a live corpus of deduplicated incident clusters, actor and malware profiles, CVEs with KEV and EPSS, and ransomware leak-site victims.
 
 An [MCP](https://modelcontextprotocol.io) server that gives Claude, Cursor, VS Code, Windsurf, Zed and any other MCP client live threat intelligence from [ThreatCluster](https://threatcluster.io) ([setup guide](https://threatcluster.io/integrations/mcp)): incident clusters (one deduplicated story per incident, with a threat score, timeline and extracted entities), entity profiles (actors, malware, tools, vendors, CVEs), CVE records with KEV / EPSS / exploit status, and ransomware leak-site victims.
 
 It is a thin, auditable wrapper over the public REST API. Every tool call is one or two `GET`s to `https://threatcluster.io/api/public/v1` with **your** API key; nothing else leaves your machine, and there is no telemetry.
+
+## Why this and not a feed aggregator
+
+Most free CTI MCP servers wrap other people's indicator feeds (OTX, abuse.ch, AbuseIPDB). ThreatCluster is the corpus itself: every story is one cluster built from every source that covered it, with a threat score, a timeline and the entities extracted from the text, plus the leak-site victim list and CVE exploit status in the same API. The free key covers all of it with a 7-day lookback; paid plans extend the window. Details and the hosted endpoint (`https://threatcluster.io/mcp`) are at [threatcluster.io/about/free-api](https://threatcluster.io/about/free-api).
 
 Published twice from one tool spec, so both are identical:
 
