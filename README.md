@@ -93,6 +93,13 @@ One prompt, `threatcluster_analyst`, carries the analyst rules (tools first, cit
 
 Errors come back as MCP tool errors with the API's own message: `401` tells the agent to set `THREATCLUSTER_API_KEY` and where a free key comes from, `429` carries the `Retry-After`, `403` names the missing scope or the lookback window and the plan that lifts it.
 
+## More on threatcluster.io
+
+- [MCP server page](https://threatcluster.io/integrations/mcp), with the per-client setups: [Claude](https://threatcluster.io/integrations/claude), [OpenAI](https://threatcluster.io/integrations/openai), [Cursor](https://threatcluster.io/integrations/cursor), [VS Code](https://threatcluster.io/integrations/vscode)
+- [Agent keys](https://threatcluster.io/docs/agent-keys): scoped, budgeted keys for agents
+- [Free API key](https://threatcluster.io/about/free-api) and the [API reference](https://threatcluster.io/about/api-reference)
+- [LLM recency benchmark](https://threatcluster.io/about/llm-recency-benchmark): grounded answers against bare-model answers on live threats
+
 ## Security
 
 - The key is read from `THREATCLUSTER_API_KEY` (then `TC_REFRESH_TOKEN`, then the tc-cli store) and sent only as the `X-API-Key` header (or `Authorization: Bearer` for a JWT minted by `tc login`) to `THREATCLUSTER_API_BASE`.
