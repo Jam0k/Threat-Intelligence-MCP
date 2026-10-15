@@ -584,9 +584,20 @@ export class ToolRunner {
       darkweb.push({ type: kind, name: g(d, "name"), date: dateOnly(g(d, "date")), group: g(d, "group"),
         country: g(d, "country"), sector: g(d, "sector"), url });
     }
+    // 15 Oct 2026: the API now understands the query itself (aliases, spacing,
+    // loose CVE ids, indicators, typo correction, a word stage). Pass its
+    // account through: terms_searched, corrected_to, did_you_mean, indicator.
+    // An indicator answer (seen: false) is a result, not an empty corpus.
+    const server: Record<string, unknown> = {};
+    for (const k of ["terms_searched", "corrected_to", "did_you_mean", "indicator"]) {
+      const v = g(body, k);
+      if (v !== undefined && v !== null) server[k] = v;
+    }
+    if (matched_stage === "phrase" && typeof g(body, "matched_stage") === "string") matched_stage = String(g(body, "matched_stage"));
     return [{
       query: q0,
       matched_stage,
+      ...server,
       days: g(body, "days") || g(body, "lookback_days"),
       total: g(body, "total"),
       clusters: arr(body.clusters).slice(0, a.limit).filter(isObj).map((c) => this.shape.cluster(c)),

@@ -542,9 +542,17 @@ class ToolRunner:
                    else f"{self.shape.site}/dark-web")
             darkweb.append({"type": kind, "name": d.get("name"), "date": date_only(d.get("date")), "group": d.get("group"),
                             "country": d.get("country"), "sector": d.get("sector"), "url": url})
+        # 15 Oct 2026: the API now understands the query itself (aliases,
+        # spacing, loose CVE ids, indicators, typo correction, a word stage).
+        # Pass its account through; an indicator answer (seen: false) is a
+        # result, not an empty corpus.
+        server = {k: body.get(k) for k in ("terms_searched", "corrected_to", "did_you_mean", "indicator") if body.get(k) is not None}
+        if matched_stage == "phrase" and isinstance(body.get("matched_stage"), str):
+            matched_stage = body["matched_stage"]
         return {
             "query": q0,
             "matched_stage": matched_stage,
+            **server,
             "days": body.get("days") or body.get("lookback_days"),
             "total": body.get("total"),
             "clusters": [self.shape.cluster(c) for c in (body.get("clusters") or [])[:limit] if isinstance(c, dict)],
