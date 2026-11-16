@@ -11,7 +11,7 @@
       "api_base": "THREATCLUSTER_API_BASE",
       "site": "THREATCLUSTER_SITE"
     },
-    "instructions": "ThreatCluster is a threat-intelligence corpus: incident clusters (each cluster is one deduplicated story built from every source that covered it, with a threat score, timeline and extracted entities), entity profiles (threat actors, malware, tools, vendors, products, CVEs, countries, industries), CVE records with KEV / EPSS / exploit status, and ransomware leak-site victim listings. Always call a tool before stating a fact about a threat; never answer from memory. Every result carries `url` fields for citation and `cost` (credits spent). A free key has 100 credits a day and a 7-day lookback; call api_budget (free, no API call) to pace yourself. Use search_threats for named things, newest_threats for what is new, leak_site_victims for who was hit, lookup_entity for a profile, get_threat for depth on the 1-3 clusters that matter."
+    "instructions": "ThreatCluster is a threat-intelligence corpus: incident clusters (each cluster is one deduplicated story built from every source that covered it, with a threat score, timeline and extracted entities), entity profiles (threat actors, malware, tools, vendors, products, CVEs, countries, industries), CVE records with KEV / EPSS / exploit status, and ransomware leak-site victim listings. Call a tool before stating a fact about a threat, and cite the `url` fields each result carries. Each result also reports `cost` (credits spent); api_budget reports the account's remaining daily allowance without making an API call. Use search_threats for named things, newest_threats for what is new, leak_site_victims for leak-site listings, lookup_entity for a profile, and get_threat for depth on the most relevant clusters."
   },
   "tools": [
     {
@@ -279,8 +279,8 @@
     },
     {
       "name": "exploited_vulnerabilities",
-      "title": "Recently exploited CVEs",
-      "description": "CVEs published or updated in a window, filtered to the ones that matter: in CISA KEV (`kev_only`), with a public exploit (`has_exploit`), by severity, vendor or product. Use for 'what should we patch this week' and 'is anything in our stack being exploited'. 1 credit.",
+      "title": "Recent CVEs",
+      "description": "CVEs published or updated in a recent window, with optional filters: listed in CISA KEV (`kev_only`, default true), public exploit available (`has_exploit`), severity, vendor or product. 1 credit.",
       "inputSchema": {
         "type": "object",
         "properties": {
