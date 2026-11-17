@@ -1,50 +1,56 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
-  "name": "io.github.Jam0k/threatcluster",
-  "description": "Live threat intelligence from ThreatCluster: incident clusters, entity profiles, CVEs with KEV/EPSS/exploit status, and ransomware leak-site victims. Read-only; needs a free API key.",
-  "status": "active",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.jam0k/threatcluster",
+  "description": "Live threat intelligence: incident clusters, threat actors, CVEs with KEV/EPSS, leak-site victims.",
   "repository": {
     "url": "https://github.com/Jam0k/Threat-Intelligence-MCP",
     "source": "github"
   },
-  "version": "0.1.0",
+  "websiteUrl": "https://threatcluster.io/integrations/mcp",
+  "version": "0.2.6",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://threatcluster.io/mcp"
+    }
+  ],
   "packages": [
     {
-      "registry_type": "npm",
-      "registry_base_url": "https://registry.npmjs.org",
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "threatcluster-mcp",
-      "version": "0.1.0",
+      "version": "0.2.6",
       "transport": { "type": "stdio" },
-      "environment_variables": [
+      "environmentVariables": [
         {
           "name": "THREATCLUSTER_API_KEY",
           "description": "ThreatCluster API key (tc_live_... / tc_agent_...). Free keys: https://threatcluster.io/api",
-          "is_required": true,
-          "is_secret": true,
+          "isRequired": true,
+          "isSecret": true,
           "format": "string"
         },
         {
           "name": "THREATCLUSTER_API_BASE",
           "description": "API base URL",
-          "is_required": false,
-          "is_secret": false,
+          "isRequired": false,
+          "isSecret": false,
           "default": "https://threatcluster.io/api/public/v1",
           "format": "string"
         }
       ]
     },
     {
-      "registry_type": "pypi",
-      "registry_base_url": "https://pypi.org",
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
       "identifier": "threatcluster-mcp",
-      "version": "0.1.0",
+      "version": "0.2.6",
       "transport": { "type": "stdio" },
-      "environment_variables": [
+      "environmentVariables": [
         {
           "name": "THREATCLUSTER_API_KEY",
           "description": "ThreatCluster API key (tc_live_... / tc_agent_...). Free keys: https://threatcluster.io/api",
-          "is_required": true,
-          "is_secret": true,
+          "isRequired": true,
+          "isSecret": true,
           "format": "string"
         }
       ]
