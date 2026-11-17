@@ -2,7 +2,7 @@
 
 MCP server (stdio) for the ThreatCluster [threat-intelligence API](https://threatcluster.io/api): incident clusters, entity profiles, CVE records and ransomware leak-site victims as ten read-only tools for Claude, Cursor, VS Code, Windsurf, Zed and any MCP client.
 
-mcp-name: io.github.jam0k/threatcluster
+mcp-name: io.github.Jam0k/threatcluster
 
 ```bash
 uvx threatcluster-mcp            # or: pipx run threatcluster-mcp

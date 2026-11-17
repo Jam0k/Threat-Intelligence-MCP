@@ -1,13 +1,13 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.jam0k/threatcluster",
+  "name": "io.github.Jam0k/threatcluster",
   "description": "Live threat intelligence: incident clusters, threat actors, CVEs with KEV/EPSS, leak-site victims.",
   "repository": {
     "url": "https://github.com/Jam0k/Threat-Intelligence-MCP",
     "source": "github"
   },
   "websiteUrl": "https://threatcluster.io/integrations/mcp",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "remotes": [
     {
       "type": "streamable-http",
@@ -19,7 +19,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "threatcluster-mcp",
-      "version": "0.2.6",
+      "version": "0.2.7",
       "transport": { "type": "stdio" },
       "environmentVariables": [
         {
@@ -43,7 +43,7 @@
       "registryType": "pypi",
       "registryBaseUrl": "https://pypi.org",
       "identifier": "threatcluster-mcp",
-      "version": "0.2.6",
+      "version": "0.2.7",
       "transport": { "type": "stdio" },
       "environmentVariables": [
         {

@@ -5,13 +5,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-## [0.2.6] - 2026-11-17
+## [0.2.7] - 2026-11-17
 
 ### Added
-- Official MCP registry listing (`io.github.jam0k/threatcluster`): `mcpName` in the npm
+- Official MCP registry listing (`io.github.Jam0k/threatcluster`): `mcpName` in the npm
   package, `mcp-name` marker in the PyPI README, refreshed `listings/server.json` (current
   schema, hosted remote `https://threatcluster.io/mcp` alongside the npm/PyPI packages) and
-  a `publish-mcp.yml` workflow that publishes it via GitHub OIDC.
+  a `publish-mcp.yml` workflow that publishes it via GitHub OIDC. (0.2.6 was burned
+  on a namespace-case mismatch: the registry namespace is `io.github.Jam0k`, case-sensitive.)
 
 ## [0.2.5] - 2026-10-15
 
