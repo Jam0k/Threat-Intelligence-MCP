@@ -1,4 +1,4 @@
-# ThreatCluster: free CTI API and MCP server
+# ThreatCluster: free threat intelligence MCP server and CTI API
 
 A free threat intelligence API (100 credits a day, no card) and an MCP server over it. Ask Claude, Cursor or any MCP client what is new, who was hit, whether a CVE is exploited, and get answers from a live corpus of deduplicated incident clusters, actor and malware profiles, CVEs with KEV and EPSS, and ransomware leak-site victims.
 
