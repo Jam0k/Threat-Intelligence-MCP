@@ -93,6 +93,10 @@ One prompt, `threatcluster_analyst`, carries the analyst rules (tools first, cit
 
 Errors come back as MCP tool errors with the API's own message: `401` tells the agent to set `THREATCLUSTER_API_KEY` and where a free key comes from, `429` carries the `Retry-After`, `403` names the missing scope or the lookback window and the plan that lifts it.
 
+## Guides
+
+- [How to check if a CVE is actively exploited](docs/check-if-a-cve-is-exploited.md) - KEV, EPSS and live reporting, with curl examples for all three
+
 ## More on threatcluster.io
 
 - [MCP server page](https://threatcluster.io/integrations/mcp), with the per-client setups: [Claude](https://threatcluster.io/integrations/claude), [OpenAI](https://threatcluster.io/integrations/openai), [Cursor](https://threatcluster.io/integrations/cursor), [VS Code](https://threatcluster.io/integrations/vscode)
